@@ -9,8 +9,13 @@ class Notifications
     fixtheteleporter::get()->notifyAllPlayers($name, $msg, $data);
   }
 
-  public static function rotateTile($name, $msg, $data)
+  public static function rotateTile($pId, $from, $to)
   {
-    fixtheteleporter::get()->notifyPlayer('rotateTile', $msg, $data);
+    $data = [
+      'player_id' => $pId,
+      'from' => $from,
+      'to' => $to,
+    ];
+    self::notifyAll('rotateTile', '', $data);
   }
 }

@@ -24,7 +24,9 @@ function (dojo, declare) {
     return declare("bgagame.fixtheteleporter", ebg.core.gamegui, {
         constructor: function(){
             console.log('fixtheteleporter constructor');
-            this._notifications = [];
+            this._notifications = [
+                ['rotateTile']
+            ];
         },
         
         setup: function( gamedatas )
@@ -195,21 +197,11 @@ function (dojo, declare) {
             });
         },
 
-        // TODO: from this point and below, you can write your game notifications handling methods
-
-        /*
-        Example:
-
-        notif_cardPlayed: function( notif )
-        {
-            console.log( 'notif_cardPlayed' );
-            console.log( notif );
-
-            // Note: notif.args contains the arguments specified during you "notifyAllPlayers" / "notifyPlayer" PHP call
-
-            // TODO: play the card in the user interface.
-        },
-
-        */
+        notif_rotateTile(n) {
+            const tile = dojo.query(`.tile[data-type='${n.args.from}']`)[0];
+            const position = tile.dataset.position;
+            dojo.destroy(tile);
+            dojo.place(this.format_block('jstpl_tile', {type: n.args.to, position: position}), 'player_board');
+        }
    });             
 });
