@@ -37,16 +37,16 @@ class Tiles extends \Teleporter\Helpers\Pieces
   public static function rotate($pId, $tileType)
   {
     if ($tileType < 5) {
-      $newTyleType = $tileType + 4;
+      $newTileType = $tileType + 4;
     } else {
-      $newTyleType = $tileType - 4;
+      $newTileType = $tileType - 4;
     }
     self::DB()
-      ->update(['type' => $newTyleType])
+      ->update(['type' => $newTileType])
       ->where('player_id', $pId)
       ->where('type', $tileType)
       ->run();
-    return $newTyleType;
+    return $newTileType;
   }
 
   public static function getTileType($pId, $position)
