@@ -1,0 +1,15 @@
+div#player_board #tile {
+  background-image:url("img/telepTiles.png");
+  @for $i from 0 through 3 {
+    &[data-position="#{$i}"] {
+      grid-column-start: ($i  % 2) + 2;
+      grid-row-start: round($i / 2 + 0.5);
+    }
+  }
+  @for $i from 1 through 8 {
+    &[data-type="#{$i}"] {
+      background-position-x: -#{-150 + 150 * $i}px;
+      background-position-y: 0;
+    }
+  }
+}

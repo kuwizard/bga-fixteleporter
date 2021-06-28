@@ -1,0 +1,87 @@
+@charset "UTF-8";
+/**
+ *------
+ * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
+ * fixtheteleporter implementation : © <Your name here> <Your email address here>
+ *
+ * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
+ * See http://en.boardgamearena.com/#!doc/Studio for more information.
+ * -----
+ *
+ * fixtheteleporter.css
+ *
+ * fixtheteleporter stylesheet
+ *
+ */
+div#board {
+  width: 100%;
+  max-width: 900px;
+  min-height: 900px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.5fr 420px 0.5fr;
+  grid-template-rows: 1fr 1fr 1fr; }
+
+div#player_board {
+  display: grid;
+  grid-template-columns: 60px 150px 150px 60px;
+  grid-template-rows: 1fr 1fr;
+  grid-column-start: 2;
+  grid-row-start: 1; }
+
+div#game_play_area {
+  display: flex;
+  justify-content: center; }
+
+div#player_board #tile {
+  background-image: url("img/telepTiles.png"); }
+  div#player_board #tile[data-position="0"] {
+    grid-column-start: 2;
+    grid-row-start: 1; }
+  div#player_board #tile[data-position="1"] {
+    grid-column-start: 3;
+    grid-row-start: 1; }
+  div#player_board #tile[data-position="2"] {
+    grid-column-start: 2;
+    grid-row-start: 2; }
+  div#player_board #tile[data-position="3"] {
+    grid-column-start: 3;
+    grid-row-start: 2; }
+  div#player_board #tile[data-type="1"] {
+    background-position-x: -0px;
+    background-position-y: 0; }
+  div#player_board #tile[data-type="2"] {
+    background-position-x: -150px;
+    background-position-y: 0; }
+  div#player_board #tile[data-type="3"] {
+    background-position-x: -300px;
+    background-position-y: 0; }
+  div#player_board #tile[data-type="4"] {
+    background-position-x: -450px;
+    background-position-y: 0; }
+  div#player_board #tile[data-type="5"] {
+    background-position-x: -600px;
+    background-position-y: 0; }
+  div#player_board #tile[data-type="6"] {
+    background-position-x: -750px;
+    background-position-y: 0; }
+  div#player_board #tile[data-type="7"] {
+    background-position-x: -900px;
+    background-position-y: 0; }
+  div#player_board #tile[data-type="8"] {
+    background-position-x: -1050px;
+    background-position-y: 0; }
+
+div#rotate {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  div#rotate[data-mirror="true"] {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1); }
+
+svg#rotate_svg {
+  opacity: 0.6; }
+  svg#rotate_svg:hover {
+    opacity: 1;
+    cursor: pointer; }

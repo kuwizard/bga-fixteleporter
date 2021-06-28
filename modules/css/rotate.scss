@@ -1,0 +1,19 @@
+div#rotate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &[data-mirror="true"] {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
+}
+
+svg#rotate_svg {
+  opacity: 0.6;
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
