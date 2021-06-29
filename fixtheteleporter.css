@@ -48,103 +48,103 @@ div#player_board #tile {
   div#player_board #tile[data-position="0"] {
     grid-column-start: 2;
     grid-row-start: 1; }
-  div#player_board #tile[data-type="1"][data-position="0"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="2"][data-position="0"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="3"][data-position="0"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="4"][data-position="0"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="5"][data-position="0"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="6"][data-position="0"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="7"][data-position="0"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="8"][data-position="0"] {
-    transform: rotate(270deg); }
   div#player_board #tile[data-position="1"] {
     grid-column-start: 3;
     grid-row-start: 1; }
-  div#player_board #tile[data-type="1"][data-position="1"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="2"][data-position="1"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="3"][data-position="1"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="4"][data-position="1"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="5"][data-position="1"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="6"][data-position="1"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="7"][data-position="1"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="8"][data-position="1"] {
-    transform: rotate(180deg); }
   div#player_board #tile[data-position="2"] {
     grid-column-start: 3;
     grid-row-start: 2; }
-  div#player_board #tile[data-type="1"][data-position="2"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="2"][data-position="2"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="3"][data-position="2"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="4"][data-position="2"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="5"][data-position="2"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="6"][data-position="2"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="7"][data-position="2"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="8"][data-position="2"] {
-    transform: rotate(90deg); }
   div#player_board #tile[data-position="3"] {
     grid-column-start: 2;
     grid-row-start: 2; }
-  div#player_board #tile[data-type="1"][data-position="3"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="2"][data-position="3"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="3"][data-position="3"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="4"][data-position="3"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="5"][data-position="3"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="6"][data-position="3"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="7"][data-position="3"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="8"][data-position="3"] {
-    transform: rotate(0deg); }
   div#player_board #tile[data-type="1"] {
     background-position-x: -0px;
     background-position-y: 0; }
+  div#player_board #tile[data-type="1"][data-position="0"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="1"][data-position="1"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="1"][data-position="2"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="1"][data-position="3"] {
+    transform: rotate(270deg); }
   div#player_board #tile[data-type="2"] {
     background-position-x: -150px;
     background-position-y: 0; }
+  div#player_board #tile[data-type="2"][data-position="0"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="2"][data-position="1"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="2"][data-position="2"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="2"][data-position="3"] {
+    transform: rotate(180deg); }
   div#player_board #tile[data-type="3"] {
     background-position-x: -300px;
     background-position-y: 0; }
+  div#player_board #tile[data-type="3"][data-position="0"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="3"][data-position="1"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="3"][data-position="2"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="3"][data-position="3"] {
+    transform: rotate(90deg); }
   div#player_board #tile[data-type="4"] {
     background-position-x: -450px;
     background-position-y: 0; }
+  div#player_board #tile[data-type="4"][data-position="0"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="4"][data-position="1"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="4"][data-position="2"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="4"][data-position="3"] {
+    transform: rotate(0deg); }
   div#player_board #tile[data-type="5"] {
     background-position-x: -600px;
     background-position-y: 0; }
+  div#player_board #tile[data-type="5"][data-position="0"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="5"][data-position="1"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="5"][data-position="2"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="5"][data-position="3"] {
+    transform: rotate(270deg); }
   div#player_board #tile[data-type="6"] {
     background-position-x: -750px;
     background-position-y: 0; }
+  div#player_board #tile[data-type="6"][data-position="0"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="6"][data-position="1"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="6"][data-position="2"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="6"][data-position="3"] {
+    transform: rotate(180deg); }
   div#player_board #tile[data-type="7"] {
     background-position-x: -900px;
     background-position-y: 0; }
+  div#player_board #tile[data-type="7"][data-position="0"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="7"][data-position="1"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="7"][data-position="2"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="7"][data-position="3"] {
+    transform: rotate(90deg); }
   div#player_board #tile[data-type="8"] {
     background-position-x: -1050px;
     background-position-y: 0; }
+  div#player_board #tile[data-type="8"][data-position="0"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="8"][data-position="1"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="8"][data-position="2"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="8"][data-position="3"] {
+    transform: rotate(0deg); }
 
 div#flip {
   display: flex;
