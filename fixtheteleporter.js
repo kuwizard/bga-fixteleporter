@@ -40,13 +40,8 @@ function (dojo, declare) {
                 var player = gamedatas.players[player_id];
                 if (player_id === this.gamedatas.gamestate.active_player) {
                     player.hand.forEach((type, position) => {
-                        if (position % 2 === 0) {
-                            dojo.place(this.format_block('jstpl_flip', {mirror: false, position: position}), 'player_board');
-                        }
+                        dojo.place(this.format_block('jstpl_flip', {mirror: [1,2].includes(position), position: position}), 'player_board');
                         dojo.place(this.format_block('jstpl_tile', {type: type, position: position}), 'player_board');
-                        if (position % 2 === 1) {
-                            dojo.place(this.format_block('jstpl_flip', {mirror: true, position: position}), 'player_board');
-                        }
                     });
                 }
             }
@@ -74,7 +69,6 @@ function (dojo, declare) {
         onEnteringState(stateName, args)
         {
             console.log( 'Entering state: '+stateName );
-            
             switch( stateName )
             {
             
@@ -131,16 +125,16 @@ function (dojo, declare) {
             {            
                 switch( stateName )
                 {
-/*               
+/*
                  Example:
- 
+
                  case 'myGameState':
-                    
+
                     // Add 3 action buttons in the action status bar:
-                    
-                    this.addActionButton( 'button_1_id', _('Button 1 label'), 'onMyMethodToCall1' ); 
-                    this.addActionButton( 'button_2_id', _('Button 2 label'), 'onMyMethodToCall2' ); 
-                    this.addActionButton( 'button_3_id', _('Button 3 label'), 'onMyMethodToCall3' ); 
+
+                    this.addActionButton( 'button_1_id', _('Button 1 label'), 'onMyMethodToCall1' );
+                    this.addActionButton( 'button_2_id', _('Button 2 label'), 'onMyMethodToCall2' );
+                    this.addActionButton( 'button_3_id', _('Button 3 label'), 'onMyMethodToCall3' );
                     break;
 */
                 }

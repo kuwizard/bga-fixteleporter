@@ -13,15 +13,20 @@ div#player_board #tile {
     cursor: pointer;
   }
 
-  @for $i from 0 through 3 {
-    &[data-position="#{$i}"] {
-      grid-column-start: ($i  % 2) + 2;
-      grid-row-start: round($i / 2 + 0.5);
+  @for $position from 0 through 3 {
+    &[data-position="#{$position}"] {
+      grid-column-start: round((($position % 3) + 2)/2) + 1;
+      grid-row-start: round($position / 2 + 0.5);
+    }
+    @for $tileType from 1 through 8 {
+      &[data-type="#{$tileType}"][data-position="#{$position}"] {
+        transform: rotate((($tileType - 1 - $position) % 4) * 90deg);
+      }
     }
   }
-  @for $i from 1 through 8 {
-    &[data-type="#{$i}"] {
-      background-position-x: -#{-150 + 150 * $i}px;
+  @for $tileType from 1 through 8 {
+    &[data-type="#{$tileType}"] {
+      background-position-x: -#{-150 + 150 * $tileType}px;
       background-position-y: 0;
     }
   }

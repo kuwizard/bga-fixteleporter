@@ -48,15 +48,79 @@ div#player_board #tile {
   div#player_board #tile[data-position="0"] {
     grid-column-start: 2;
     grid-row-start: 1; }
+  div#player_board #tile[data-type="1"][data-position="0"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="2"][data-position="0"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="3"][data-position="0"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="4"][data-position="0"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="5"][data-position="0"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="6"][data-position="0"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="7"][data-position="0"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="8"][data-position="0"] {
+    transform: rotate(270deg); }
   div#player_board #tile[data-position="1"] {
     grid-column-start: 3;
     grid-row-start: 1; }
+  div#player_board #tile[data-type="1"][data-position="1"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="2"][data-position="1"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="3"][data-position="1"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="4"][data-position="1"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="5"][data-position="1"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="6"][data-position="1"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="7"][data-position="1"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="8"][data-position="1"] {
+    transform: rotate(180deg); }
   div#player_board #tile[data-position="2"] {
-    grid-column-start: 2;
-    grid-row-start: 2; }
-  div#player_board #tile[data-position="3"] {
     grid-column-start: 3;
     grid-row-start: 2; }
+  div#player_board #tile[data-type="1"][data-position="2"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="2"][data-position="2"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="3"][data-position="2"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="4"][data-position="2"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="5"][data-position="2"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="6"][data-position="2"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="7"][data-position="2"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="8"][data-position="2"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-position="3"] {
+    grid-column-start: 2;
+    grid-row-start: 2; }
+  div#player_board #tile[data-type="1"][data-position="3"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="2"][data-position="3"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="3"][data-position="3"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="4"][data-position="3"] {
+    transform: rotate(0deg); }
+  div#player_board #tile[data-type="5"][data-position="3"] {
+    transform: rotate(90deg); }
+  div#player_board #tile[data-type="6"][data-position="3"] {
+    transform: rotate(180deg); }
+  div#player_board #tile[data-type="7"][data-position="3"] {
+    transform: rotate(270deg); }
+  div#player_board #tile[data-type="8"][data-position="3"] {
+    transform: rotate(0deg); }
   div#player_board #tile[data-type="1"] {
     background-position-x: -0px;
     background-position-y: 0; }
@@ -89,6 +153,18 @@ div#flip {
   div#flip[data-mirror="true"] {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1); }
+  div#flip[data-position="0"] {
+    grid-column-start: 1;
+    grid-row-start: 1; }
+  div#flip[data-position="1"] {
+    grid-column-start: 4;
+    grid-row-start: 1; }
+  div#flip[data-position="2"] {
+    grid-column-start: 4;
+    grid-row-start: 2; }
+  div#flip[data-position="3"] {
+    grid-column-start: 1;
+    grid-row-start: 2; }
 
 svg#flip_svg {
   opacity: 0.6; }

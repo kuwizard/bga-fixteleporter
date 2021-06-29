@@ -7,6 +7,24 @@ div#flip {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
   }
+
+  @for $position from 0 through 3 {
+    &[data-position="#{$position}"] {
+      @if $position == 0 {
+        grid-column-start: 1;
+        grid-row-start: 1;
+      } @else if $position == 1 {
+        grid-column-start: 4;
+        grid-row-start: 1;
+      } @else if $position == 2 {
+        grid-column-start: 4;
+        grid-row-start: 2;
+      } @else {
+        grid-column-start: 1;
+        grid-row-start: 2;
+      }
+    }
+  }
 }
 
 svg#flip_svg {
