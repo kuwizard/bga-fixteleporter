@@ -25,11 +25,12 @@ function (dojo, declare) {
         constructor: function(){
             console.log('fixtheteleporter constructor');
             this._notifications = [
-                ['rotateTile']
+                ['flipTile'],
+                ['changeTiles']
             ];
         },
         
-        setup: function( gamedatas )
+        setup(gamedatas)
         {
             console.log( "Starting game setup" );
             
@@ -40,21 +41,24 @@ function (dojo, declare) {
                 if (player_id === this.gamedatas.gamestate.active_player) {
                     player.hand.forEach((type, position) => {
                         if (position % 2 === 0) {
-                            dojo.place(this.format_block('jstpl_rotate', {mirror: false, position: position}), 'player_board');
+                            dojo.place(this.format_block('jstpl_flip', {mirror: false, position: position}), 'player_board');
                         }
                         dojo.place(this.format_block('jstpl_tile', {type: type, position: position}), 'player_board');
                         if (position % 2 === 1) {
-                            dojo.place(this.format_block('jstpl_rotate', {mirror: true, position: position}), 'player_board');
+                            dojo.place(this.format_block('jstpl_flip', {mirror: true, position: position}), 'player_board');
                         }
                     });
                 }
             }
-            dojo.query('.rotate').forEach((rotateButton) => {
-                dojo.connect(rotateButton, 'onclick', (evt) =>  {
+            dojo.query('.flip').forEach((flipButton) => {
+                dojo.connect(flipButton, 'onclick', (evt) =>  {
                     evt.preventDefault();
                     evt.stopPropagation();
-                    this.onClickRotate(rotateButton.dataset.position)
+                    this.onClickFlip(flipButton.dataset.position)
                 });
+            })
+            dojo.query('.tile').forEach((tile) => {
+                this.connectToAction(tile);
             })
             this.setupNotifications();
             console.log( "Ending game setup" );
@@ -67,7 +71,7 @@ function (dojo, declare) {
         // onEnteringState: this method is called each time we are entering into a new game state.
         //                  You can use this method to perform some user interface changes at this moment.
         //
-        onEnteringState: function( stateName, args )
+        onEnteringState(stateName, args)
         {
             console.log( 'Entering state: '+stateName );
             
@@ -93,7 +97,7 @@ function (dojo, declare) {
         // onLeavingState: this method is called each time we are leaving a game state.
         //                 You can use this method to perform some user interface changes at this moment.
         //
-        onLeavingState: function( stateName )
+        onLeavingState(stateName)
         {
             console.log( 'Leaving state: '+stateName );
             
@@ -119,7 +123,7 @@ function (dojo, declare) {
         // onUpdateActionButtons: in this method you can manage "action buttons" that are displayed in the
         //                        action status bar (ie: the HTML links in the status bar).
         //        
-        onUpdateActionButtons: function( stateName, args )
+        onUpdateActionButtons(stateName, args)
         {
             console.log( 'onUpdateActionButtons: '+stateName );
                       
@@ -145,13 +149,28 @@ function (dojo, declare) {
 
         ///////////////////////////////////////////////////
         //// Utility methods
-        onClickRotate(position) {
-            this.takeAction('actRotate', {
+        onClickFlip(position) {
+            this.takeAction('actFlip', {
                 position: position,
             });
         },
 
-
+        onClickSelect(position) {
+            let selected = dojo.query('.selected');
+            const tileAtPosition = dojo.query(`.tile[data-position='${position}']`)[0]
+            if (selected.length === 0) {
+                dojo.addClass(tileAtPosition, 'selected');
+            } else {
+                selected = selected[0];
+                if (selected === tileAtPosition) {
+                    dojo.removeClass(tileAtPosition, 'selected');
+                } else {
+                    this.takeAction('actChange', {
+                        positions: `${position};${selected.dataset.position}`,
+                    });
+                }
+            }
+        },
 
         /*
          * Make an AJAX call with automatic lock
@@ -178,6 +197,16 @@ function (dojo, declare) {
             });
         },
 
+        connectToAction(tile) {
+            dojo.connect(tile, 'onclick', (evt) =>  {
+                evt.preventDefault();
+                evt.stopPropagation();
+                this.onClickSelect(tile.dataset.position)
+            });
+        },
+
+        ///////////////////////////////////////////////////
+        //// Notifications methods
         setupNotifications: function()
         {
             console.log(this._notifications);
@@ -203,11 +232,26 @@ function (dojo, declare) {
             });
         },
 
-        notif_rotateTile(n) {
+        notif_flipTile(n) {
             const tile = dojo.query(`.tile[data-type='${n.args.from}']`)[0];
             const position = tile.dataset.position;
             dojo.destroy(tile);
-            dojo.place(this.format_block('jstpl_tile', {type: n.args.to, position: position}), 'player_board');
+            const newTile = dojo.place(this.format_block('jstpl_tile', {type: n.args.to, position: position}), 'player_board');
+            this.connectToAction(newTile);
+        },
+
+        notif_changeTiles(n) {
+            const positions = n.args.positions;
+            const tiles = positions.map((position) => {
+                return dojo.query(`.tile[data-position='${position}']`)[0];
+            });
+            tiles.forEach((tile) => {
+                const oldPosition = parseInt(tile.dataset.position);
+                const newPosition = positions.find((position) => position !== oldPosition);
+                dojo.attr(tile, 'data-position', newPosition);
+            });
+            const selected = dojo.query('.selected')[0];
+            dojo.removeClass(selected, 'selected');
         }
    });             
 });

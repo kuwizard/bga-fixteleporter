@@ -34,7 +34,7 @@ class Tiles extends \Teleporter\Helpers\Pieces
     }, $result);
   }
 
-  public static function rotate($pId, $tileType)
+  public static function flip($pId, $tileType)
   {
     if ($tileType < 5) {
       $newTileType = $tileType + 4;
@@ -57,5 +57,24 @@ class Tiles extends \Teleporter\Helpers\Pieces
       ->where('position', $position)
       ->getSingle();
     return (int) $result['type'];
+  }
+
+  public static function change($pId, $positions)
+  {
+    // Sort positions in descending and tiles in ascending order to make sure they interchange
+    rsort($positions);
+    $tilesToChangeIds = self::DB()
+      ->select(['tile_id'])
+      ->where('player_id', $pId)
+      ->whereIn('position', $positions)
+      ->orderBy('position')
+      ->get()
+      ->getIds();
+    foreach ($tilesToChangeIds as $tileId) {
+      self::DB()
+        ->update(['position' => array_shift($positions)])
+        ->where('tile_id', $tileId)
+        ->run();
+    }
   }
 }

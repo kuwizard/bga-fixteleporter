@@ -9,6 +9,9 @@ div#player_board #tile {
   &.selected {
     border-color: red;
   }
+  &:hover {
+    cursor: pointer;
+  }
 
   @for $i from 0 through 3 {
     &[data-position="#{$i}"] {

@@ -1,4 +1,4 @@
-div#rotate {
+div#flip {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@ div#rotate {
   }
 }
 
-svg#rotate_svg {
+svg#flip_svg {
   opacity: 0.6;
 
   &:hover {

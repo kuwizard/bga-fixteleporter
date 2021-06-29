@@ -39,11 +39,20 @@
       }
   	}
 
-    public function actRotate()
+    public function actFlip()
     {
       self::setAjaxMode();
       $playerId = $this->game->getActivePlayerId();
-      $this->game->actRotate($playerId, self::getInt('position'));
+      $this->game->actFlip($playerId, self::getInt('position'));
+      self::ajaxResponse();
+    }
+
+    public function actChange()
+    {
+      self::setAjaxMode();
+      $playerId = $this->game->getActivePlayerId();
+      $positions = array_map('intval', explode(';', self::getArg('positions', AT_numberlist, false)));
+      $this->game->actChange($playerId, $positions);
       self::ajaxResponse();
     }
 

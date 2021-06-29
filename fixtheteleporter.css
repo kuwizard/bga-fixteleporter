@@ -43,6 +43,8 @@ div#player_board #tile {
   background-clip: padding-box; }
   div#player_board #tile.selected {
     border-color: red; }
+  div#player_board #tile:hover {
+    cursor: pointer; }
   div#player_board #tile[data-position="0"] {
     grid-column-start: 2;
     grid-row-start: 1; }
@@ -80,16 +82,16 @@ div#player_board #tile {
     background-position-x: -1050px;
     background-position-y: 0; }
 
-div#rotate {
+div#flip {
   display: flex;
   justify-content: center;
   align-items: center; }
-  div#rotate[data-mirror="true"] {
+  div#flip[data-mirror="true"] {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1); }
 
-svg#rotate_svg {
+svg#flip_svg {
   opacity: 0.6; }
-  svg#rotate_svg:hover {
+  svg#flip_svg:hover {
     opacity: 1;
     cursor: pointer; }

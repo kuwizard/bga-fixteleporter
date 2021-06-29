@@ -10,7 +10,7 @@ div#board {
 
 div#player_board {
   display: grid;
-  grid-template-columns: $rotateWidth $tileSize + 2*$tileBorder $tileSize + 2*$tileBorder $rotateWidth;
+  grid-template-columns: $flipWidth $tileSize + 2*$tileBorder $tileSize + 2*$tileBorder $flipWidth;
   grid-template-rows: 1fr 1fr;
   grid-column-start: 2;
   grid-row-start: 1;
