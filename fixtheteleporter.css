@@ -20,11 +20,11 @@ div#board {
   position: relative;
   display: grid;
   grid-template-columns: 0.5fr 420px 0.5fr;
-  grid-template-rows: 1fr 1fr 1fr; }
+  grid-template-rows: 308px 1fr 1fr; }
 
 div#player_board {
   display: grid;
-  grid-template-columns: 60px 150px 150px 60px;
+  grid-template-columns: 60px 154px 154px 60px;
   grid-template-rows: 1fr 1fr;
   grid-column-start: 2;
   grid-row-start: 1; }
@@ -34,7 +34,15 @@ div#game_play_area {
   justify-content: center; }
 
 div#player_board #tile {
-  background-image: url("img/telepTiles.png"); }
+  background-image: url("img/telepTiles.png");
+  max-width: 150px;
+  max-height: 150px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
+  background-clip: padding-box; }
+  div#player_board #tile.selected {
+    border-color: red; }
   div#player_board #tile[data-position="0"] {
     grid-column-start: 2;
     grid-row-start: 1; }

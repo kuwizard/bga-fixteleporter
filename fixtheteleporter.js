@@ -50,7 +50,11 @@ function (dojo, declare) {
                 }
             }
             dojo.query('.rotate').forEach((rotateButton) => {
-                dojo.connect(rotateButton, 'onclick', () => this.onClickRotate(rotateButton.dataset.position));
+                dojo.connect(rotateButton, 'onclick', (evt) =>  {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    this.onClickRotate(rotateButton.dataset.position)
+                });
             })
             this.setupNotifications();
             console.log( "Ending game setup" );
@@ -146,6 +150,8 @@ function (dojo, declare) {
                 position: position,
             });
         },
+
+
 
         /*
          * Make an AJAX call with automatic lock

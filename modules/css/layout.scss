@@ -5,12 +5,12 @@ div#board {
   position: relative;
   display: grid;
   grid-template-columns: 0.5fr $playerBoardSize 0.5fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 2*$tileSize + 4*$tileBorder 1fr 1fr;
 }
 
 div#player_board {
   display: grid;
-  grid-template-columns: $rotateWidth $tileSize $tileSize $rotateWidth;
+  grid-template-columns: $rotateWidth $tileSize + 2*$tileBorder $tileSize + 2*$tileBorder $rotateWidth;
   grid-template-rows: 1fr 1fr;
   grid-column-start: 2;
   grid-row-start: 1;

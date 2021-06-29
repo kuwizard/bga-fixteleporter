@@ -1,5 +1,15 @@
 div#player_board #tile {
   background-image:url("img/telepTiles.png");
+  max-width: $tileSize;
+  max-height: $tileSize;
+  border-width: $tileBorder;
+  border-style: solid;
+  border-color: transparent;
+  background-clip: padding-box;
+  &.selected {
+    border-color: red;
+  }
+
   @for $i from 0 through 3 {
     &[data-position="#{$i}"] {
       grid-column-start: ($i  % 2) + 2;
