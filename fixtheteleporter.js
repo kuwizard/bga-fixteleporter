@@ -26,7 +26,9 @@ function (dojo, declare) {
             console.log('fixtheteleporter constructor');
             this._notifications = [
                 ['flipTile'],
-                ['changeTiles']
+                ['changeTiles'],
+                ['newScore'],
+                ['newCard'],
             ];
         },
         
@@ -45,9 +47,7 @@ function (dojo, declare) {
                     });
                 }
             }
-            gamedatas.card.forEach((type, i) => {
-                dojo.place(this.format_block('jstpl_tile', {type: type, position: i}), 'card_container');
-            });
+            this.displayNewCard(gamedatas.card);
             dojo.query('.flip').forEach((flipButton) => {
                 dojo.connect(flipButton, 'onclick', (evt) =>  {
                     evt.preventDefault();
@@ -58,6 +58,7 @@ function (dojo, declare) {
             dojo.query('.tile').forEach((tile) => {
                 this.connectToAction(tile);
             });
+
             this.setupNotifications();
             console.log( "Ending game setup" );
         },
@@ -74,14 +75,14 @@ function (dojo, declare) {
             console.log( 'Entering state: '+stateName );
             switch( stateName )
             {
-            
+
             /* Example:
-            
+
             case 'myGameState':
-            
+
                 // Show some HTML block at this game state
                 dojo.style( 'my_html_block_id', 'display', 'block' );
-                
+
                 break;
            */
            
@@ -123,23 +124,13 @@ function (dojo, declare) {
         onUpdateActionButtons(stateName, args)
         {
             console.log( 'onUpdateActionButtons: '+stateName );
-                      
             if( this.isCurrentPlayerActive() )
             {            
                 switch( stateName )
                 {
-/*
-                 Example:
-
-                 case 'myGameState':
-
-                    // Add 3 action buttons in the action status bar:
-
-                    this.addActionButton( 'button_1_id', _('Button 1 label'), 'onMyMethodToCall1' );
-                    this.addActionButton( 'button_2_id', _('Button 2 label'), 'onMyMethodToCall2' );
-                    this.addActionButton( 'button_3_id', _('Button 3 label'), 'onMyMethodToCall3' );
+                 case 'playerTurn':
+                     this.addActionButton('buttonEndTurn', _('I\'m done!'), 'onClickFinished', null, false, 'blue');
                     break;
-*/
                 }
             }
         },        
@@ -167,6 +158,10 @@ function (dojo, declare) {
                     });
                 }
             }
+        },
+
+        onClickFinished() {
+            this.takeAction('actDone', {});
         },
 
         /*
@@ -199,6 +194,15 @@ function (dojo, declare) {
                 evt.preventDefault();
                 evt.stopPropagation();
                 this.onClickSelect(tile.dataset.position)
+            });
+        },
+
+        displayNewCard(types) {
+            dojo.query('.card_container.tile').forEach((tile) => {
+                dojo.destroy(tile);
+            })
+            types.forEach((type, i) => {
+                dojo.place(this.format_block('jstpl_tile', {type: type, position: i}), 'card_container');
             });
         },
 
@@ -249,6 +253,15 @@ function (dojo, declare) {
             });
             const selected = dojo.query('.selected')[0];
             dojo.removeClass(selected, 'selected');
-        }
+        },
+
+        notif_newScore(n) {
+            const playerId = n.args.player_id;
+            this.scoreCtrl[playerId].toValue(this.scoreCtrl[playerId].current_value + 1);
+        },
+
+        notif_newCard(n) {
+            this.displayNewCard(n.args.card)
+        },
    });             
 });

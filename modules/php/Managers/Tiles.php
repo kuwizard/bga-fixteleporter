@@ -30,42 +30,38 @@ class Tiles extends \Teleporter\Helpers\Pieces
       ->where('player_id', $playerId)
       ->orderBy('position')->get()->toArray();
     return array_map(function ($el) {
-      return $el['type'];
+      return (int) $el['type'];
     }, $result);
   }
 
-  public static function flip($pId, $tileType)
+  public static function flip($playerId, $tileType)
   {
-    if ($tileType < 5) {
-      $newTileType = $tileType + 4;
-    } else {
-      $newTileType = $tileType - 4;
-    }
+    $newTileType = $tileType < 5 ? $tileType + 4 : $tileType - 4;
     self::DB()
       ->update(['type' => $newTileType])
-      ->where('player_id', $pId)
+      ->where('player_id', $playerId)
       ->where('type', $tileType)
       ->run();
     return $newTileType;
   }
 
-  public static function getTileType($pId, $position)
+  public static function getTileType($playerId, $position)
   {
     $result = self::DB()
       ->select(['type'])
-      ->where('player_id', $pId)
+      ->where('player_id', $playerId)
       ->where('position', $position)
       ->getSingle();
     return (int) $result['type'];
   }
 
-  public static function change($pId, $positions)
+  public static function change($playerId, $positions)
   {
     // Sort positions in descending and tiles in ascending order to make sure they interchange
     rsort($positions);
     $tilesToChangeIds = self::DB()
       ->select(['tile_id'])
-      ->where('player_id', $pId)
+      ->where('player_id', $playerId)
       ->whereIn('position', $positions)
       ->orderBy('position')
       ->get()

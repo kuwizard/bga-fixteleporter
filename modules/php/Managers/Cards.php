@@ -56,4 +56,9 @@ class Cards extends \Teleporter\Helpers\Pieces
       return (int) $value;
     }, array_values($currentCardValues));
   }
+
+  public static function pickNextCard()
+  {
+    Globals::pickNextCard();
+  }
 }

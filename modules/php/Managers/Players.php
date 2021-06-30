@@ -1,5 +1,6 @@
 <?php
 namespace Teleporter\Managers;
+use Teleporter\Helpers\Notifications;
 use Teleporter\Models\Player;
 use fixtheteleporter;
 
@@ -31,12 +32,12 @@ class Players extends \Teleporter\Helpers\DB_Manager
     ]);
 
     $values = [];
-    foreach ($players as $pId => $player) {
+    foreach ($players as $playerId => $player) {
       $color = array_pop($gameInfos['player_colors']);
       $canal = $player['player_canal'];
       $avatar = addslashes($player['player_avatar']);
       $name = addslashes($player['player_name']);
-      $values[] = [$pId, $color, $canal, $name, $avatar];
+      $values[] = [$playerId, $color, $canal, $name, $avatar];
     }
     $query->values($values);
     self::getGame()->reattributeColorsBasedOnPreferences($players, $colors);
@@ -58,11 +59,11 @@ class Players extends \Teleporter\Helpers\DB_Manager
     return self::DB()->get(false);
   }
 
-  public static function get($pId = null)
+  public static function get($playerId = null)
   {
-    $pId = $pId ?: self::getActiveId();
+    $playerId = $playerId ?: self::getActiveId();
     return self::DB()
-      ->where($pId)
+      ->where($playerId)
       ->getSingle();
   }
 
@@ -81,5 +82,16 @@ class Players extends \Teleporter\Helpers\DB_Manager
     return self::getAll()->map(function ($player) {
       return $player->getUiData();
     });
+  }
+
+  public static function givePointTo($playerId)
+  {
+    $player = self::get($playerId);
+    $oldScore = $player->getScore();
+    self::DB()
+      ->update(['player_score' => $oldScore + 1])
+      ->where('player_id', $playerId)
+      ->run();
+    Notifications::newScore($player);
   }
 }

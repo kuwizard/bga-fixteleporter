@@ -5,9 +5,6 @@ use Teleporter\Managers\Tiles;
 
 class Player
 {
-  protected static $table = 'player';
-  protected static $primary = 'player_id';
-
   protected $id;
   protected $no; // natural order
   protected $name; // player name
@@ -29,9 +26,15 @@ class Player
   {
     return $this->id;
   }
-  public function getNo()
+
+  public function getName()
   {
-    return $this->no;
+    return $this->name;
+  }
+
+  public function getScore()
+  {
+    return $this->score;
   }
 
   public function getUiData()

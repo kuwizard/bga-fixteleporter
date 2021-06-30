@@ -56,6 +56,14 @@
       self::ajaxResponse();
     }
 
+    public function actDone()
+    {
+      self::setAjaxMode();
+      $playerId = $this->game->getActivePlayerId();
+      $this->game->actDone($playerId);
+      self::ajaxResponse();
+    }
+
     private function getInt($var)
     {
       $arg = self::getArg($var, AT_alphanum, false);

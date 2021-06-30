@@ -14,29 +14,60 @@ class Globals extends \Teleporter\Helpers\DB_Manager
     $varName = 'currentCard';
     $currentCard = self::getCurrentCard();
     if ($currentCard === null) {
-      self::DB()
-        ->insert([
-          'name' => $varName,
-          'value' => 1,
-        ]);
+      self::insert($varName, 1);
     } else {
-      self::DB()
-        ->update(['value' => (int) $currentCard['value'] + 1])
-        ->where('name', $varName)
-        ->run();
+      self::update($varName, (int)$currentCard['value'] + 1);
     }
-  }
-
-  private static function getCurrentCard()
-  {
-    return self::DB()
-      ->select(['value'])
-      ->where('name', 'currentCard')
-      ->get(true);
   }
 
   public static function getCurrentCardId()
   {
-    return (int) self::getCurrentCard()['value'];
+    return (int)self::getCurrentCard()['value'];
+  }
+
+  public static function getPlayerToCheck()
+  {
+    return self::get('player');
+  }
+
+  public static function setPlayerToCheck($playerId = 0)
+  {
+    self::update('player', $playerId);
+  }
+
+  public static function initPlayerVar()
+  {
+    self::insert('player', 0);
+  }
+
+  private static function getCurrentCard()
+  {
+    return self::get('currentCard', false);
+  }
+
+  private static function insert($name, $value)
+  {
+    self::DB()
+      ->insert([
+        'name' => $name,
+        'value' => $value,
+      ]);
+  }
+
+  private static function get($name, $getValue = true)
+  {
+    $valueArray =  self::DB()
+      ->select(['value'])
+      ->where('name', $name)
+      ->get(true);
+    return $getValue ? (int) $valueArray['value'] : $valueArray;
+  }
+
+  private static function update($name, $value)
+  {
+    self::DB()
+      ->update(['value' => $value])
+      ->where('name', $name)
+      ->run();
   }
 }
