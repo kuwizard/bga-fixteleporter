@@ -45,6 +45,9 @@ function (dojo, declare) {
                     });
                 }
             }
+            gamedatas.card.forEach((type, i) => {
+                dojo.place(this.format_block('jstpl_tile', {type: type, position: i}), 'card_container');
+            });
             dojo.query('.flip').forEach((flipButton) => {
                 dojo.connect(flipButton, 'onclick', (evt) =>  {
                     evt.preventDefault();
@@ -54,7 +57,7 @@ function (dojo, declare) {
             })
             dojo.query('.tile').forEach((tile) => {
                 this.connectToAction(tile);
-            })
+            });
             this.setupNotifications();
             console.log( "Ending game setup" );
         },

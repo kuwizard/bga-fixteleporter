@@ -1,4 +1,4 @@
 $tileSize: 150px;
 $tileBorder: 2px;
 $flipWidth: 60px;
-$playerBoardSize: 2*$tileSize + 2*$flipWidth;
+$playerBoardSize: 2*$tileSize + 2*$flipWidth + 4*$tileBorder;

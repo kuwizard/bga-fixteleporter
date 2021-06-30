@@ -19,8 +19,9 @@ div#board {
   min-height: 900px;
   position: relative;
   display: grid;
-  grid-template-columns: 0.5fr 420px 0.5fr;
-  grid-template-rows: 308px 1fr 1fr; }
+  grid-template-columns: 0.5fr 428px 0.5fr;
+  grid-template-rows: 308px 300px 1fr;
+  grid-gap: 10px; }
 
 div#player_board {
   display: grid;
@@ -33,10 +34,100 @@ div#game_play_area {
   display: flex;
   justify-content: center; }
 
-div#player_board #tile {
+#tile {
   background-image: url("img/telepTiles.png");
-  max-width: 150px;
-  max-height: 150px;
+  width: 150px;
+  height: 150px; }
+  #tile[data-type="1"] {
+    background-position-x: -0px;
+    background-position-y: 0; }
+  #tile[data-type="1"][data-position="0"] {
+    transform: rotate(0deg); }
+  #tile[data-type="1"][data-position="1"] {
+    transform: rotate(90deg); }
+  #tile[data-type="1"][data-position="2"] {
+    transform: rotate(180deg); }
+  #tile[data-type="1"][data-position="3"] {
+    transform: rotate(270deg); }
+  #tile[data-type="2"] {
+    background-position-x: -150px;
+    background-position-y: 0; }
+  #tile[data-type="2"][data-position="0"] {
+    transform: rotate(270deg); }
+  #tile[data-type="2"][data-position="1"] {
+    transform: rotate(0deg); }
+  #tile[data-type="2"][data-position="2"] {
+    transform: rotate(90deg); }
+  #tile[data-type="2"][data-position="3"] {
+    transform: rotate(180deg); }
+  #tile[data-type="3"] {
+    background-position-x: -300px;
+    background-position-y: 0; }
+  #tile[data-type="3"][data-position="0"] {
+    transform: rotate(180deg); }
+  #tile[data-type="3"][data-position="1"] {
+    transform: rotate(270deg); }
+  #tile[data-type="3"][data-position="2"] {
+    transform: rotate(0deg); }
+  #tile[data-type="3"][data-position="3"] {
+    transform: rotate(90deg); }
+  #tile[data-type="4"] {
+    background-position-x: -450px;
+    background-position-y: 0; }
+  #tile[data-type="4"][data-position="0"] {
+    transform: rotate(90deg); }
+  #tile[data-type="4"][data-position="1"] {
+    transform: rotate(180deg); }
+  #tile[data-type="4"][data-position="2"] {
+    transform: rotate(270deg); }
+  #tile[data-type="4"][data-position="3"] {
+    transform: rotate(0deg); }
+  #tile[data-type="5"] {
+    background-position-x: -600px;
+    background-position-y: 0; }
+  #tile[data-type="5"][data-position="0"] {
+    transform: rotate(0deg); }
+  #tile[data-type="5"][data-position="1"] {
+    transform: rotate(90deg); }
+  #tile[data-type="5"][data-position="2"] {
+    transform: rotate(180deg); }
+  #tile[data-type="5"][data-position="3"] {
+    transform: rotate(270deg); }
+  #tile[data-type="6"] {
+    background-position-x: -750px;
+    background-position-y: 0; }
+  #tile[data-type="6"][data-position="0"] {
+    transform: rotate(270deg); }
+  #tile[data-type="6"][data-position="1"] {
+    transform: rotate(0deg); }
+  #tile[data-type="6"][data-position="2"] {
+    transform: rotate(90deg); }
+  #tile[data-type="6"][data-position="3"] {
+    transform: rotate(180deg); }
+  #tile[data-type="7"] {
+    background-position-x: -900px;
+    background-position-y: 0; }
+  #tile[data-type="7"][data-position="0"] {
+    transform: rotate(180deg); }
+  #tile[data-type="7"][data-position="1"] {
+    transform: rotate(270deg); }
+  #tile[data-type="7"][data-position="2"] {
+    transform: rotate(0deg); }
+  #tile[data-type="7"][data-position="3"] {
+    transform: rotate(90deg); }
+  #tile[data-type="8"] {
+    background-position-x: -1050px;
+    background-position-y: 0; }
+  #tile[data-type="8"][data-position="0"] {
+    transform: rotate(90deg); }
+  #tile[data-type="8"][data-position="1"] {
+    transform: rotate(180deg); }
+  #tile[data-type="8"][data-position="2"] {
+    transform: rotate(270deg); }
+  #tile[data-type="8"][data-position="3"] {
+    transform: rotate(0deg); }
+
+div#player_board #tile {
   border-width: 2px;
   border-style: solid;
   border-color: transparent;
@@ -57,94 +148,6 @@ div#player_board #tile {
   div#player_board #tile[data-position="3"] {
     grid-column-start: 2;
     grid-row-start: 2; }
-  div#player_board #tile[data-type="1"] {
-    background-position-x: -0px;
-    background-position-y: 0; }
-  div#player_board #tile[data-type="1"][data-position="0"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="1"][data-position="1"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="1"][data-position="2"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="1"][data-position="3"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="2"] {
-    background-position-x: -150px;
-    background-position-y: 0; }
-  div#player_board #tile[data-type="2"][data-position="0"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="2"][data-position="1"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="2"][data-position="2"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="2"][data-position="3"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="3"] {
-    background-position-x: -300px;
-    background-position-y: 0; }
-  div#player_board #tile[data-type="3"][data-position="0"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="3"][data-position="1"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="3"][data-position="2"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="3"][data-position="3"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="4"] {
-    background-position-x: -450px;
-    background-position-y: 0; }
-  div#player_board #tile[data-type="4"][data-position="0"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="4"][data-position="1"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="4"][data-position="2"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="4"][data-position="3"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="5"] {
-    background-position-x: -600px;
-    background-position-y: 0; }
-  div#player_board #tile[data-type="5"][data-position="0"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="5"][data-position="1"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="5"][data-position="2"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="5"][data-position="3"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="6"] {
-    background-position-x: -750px;
-    background-position-y: 0; }
-  div#player_board #tile[data-type="6"][data-position="0"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="6"][data-position="1"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="6"][data-position="2"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="6"][data-position="3"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="7"] {
-    background-position-x: -900px;
-    background-position-y: 0; }
-  div#player_board #tile[data-type="7"][data-position="0"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="7"][data-position="1"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="7"][data-position="2"] {
-    transform: rotate(0deg); }
-  div#player_board #tile[data-type="7"][data-position="3"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="8"] {
-    background-position-x: -1050px;
-    background-position-y: 0; }
-  div#player_board #tile[data-type="8"][data-position="0"] {
-    transform: rotate(90deg); }
-  div#player_board #tile[data-type="8"][data-position="1"] {
-    transform: rotate(180deg); }
-  div#player_board #tile[data-type="8"][data-position="2"] {
-    transform: rotate(270deg); }
-  div#player_board #tile[data-type="8"][data-position="3"] {
-    transform: rotate(0deg); }
 
 div#flip {
   display: flex;
@@ -171,3 +174,27 @@ svg#flip_svg {
   svg#flip_svg:hover {
     opacity: 1;
     cursor: pointer; }
+
+div#card {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  justify-self: center; }
+  div#card #card_container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    display: grid;
+    width: fit-content;
+    border-radius: 50px;
+    overflow: hidden; }
+    div#card #card_container #tile[data-position="0"] {
+      grid-column-start: 1;
+      grid-row-start: 1; }
+    div#card #card_container #tile[data-position="1"] {
+      grid-column-start: 2;
+      grid-row-start: 1; }
+    div#card #card_container #tile[data-position="2"] {
+      grid-column-start: 2;
+      grid-row-start: 2; }
+    div#card #card_container #tile[data-position="3"] {
+      grid-column-start: 1;
+      grid-row-start: 2; }

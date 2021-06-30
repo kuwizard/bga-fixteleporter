@@ -5,7 +5,8 @@ div#board {
   position: relative;
   display: grid;
   grid-template-columns: 0.5fr $playerBoardSize 0.5fr;
-  grid-template-rows: 2*$tileSize + 4*$tileBorder 1fr 1fr;
+  grid-template-rows: 2*$tileSize + 4*$tileBorder 2*$tileSize 1fr;
+  grid-gap: 10px;
 }
 
 div#player_board {
@@ -20,4 +21,3 @@ div#game_play_area {
   display: flex;
   justify-content: center;
 }
-

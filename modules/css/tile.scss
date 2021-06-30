@@ -1,7 +1,22 @@
-div#player_board #tile {
+#tile {
   background-image:url("img/telepTiles.png");
-  max-width: $tileSize;
-  max-height: $tileSize;
+  width: $tileSize;
+  height: $tileSize;
+
+  @for $tileType from 1 through 8 {
+    &[data-type="#{$tileType}"] {
+      background-position-x: -#{-150 + 150 * $tileType}px;
+      background-position-y: 0;
+    }
+    @for $position from 0 through 3 {
+      &[data-type="#{$tileType}"][data-position="#{$position}"] {
+        transform: rotate(((1 - $tileType + $position) % 4) * 90deg);
+      }
+    }
+  }
+}
+
+div#player_board #tile {
   border-width: $tileBorder;
   border-style: solid;
   border-color: transparent;
@@ -17,17 +32,6 @@ div#player_board #tile {
     &[data-position="#{$position}"] {
       grid-column-start: round((($position % 3) + 2)/2) + 1;
       grid-row-start: round($position / 2 + 0.5);
-    }
-  }
-  @for $tileType from 1 through 8 {
-    &[data-type="#{$tileType}"] {
-      background-position-x: -#{-150 + 150 * $tileType}px;
-      background-position-y: 0;
-    }
-    @for $position from 0 through 3 {
-      &[data-type="#{$tileType}"][data-position="#{$position}"] {
-        transform: rotate(((1 - $tileType + $position) % 4) * 90deg);
-      }
     }
   }
 }

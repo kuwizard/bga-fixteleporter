@@ -16,6 +16,8 @@
   *
   */
 
+use Teleporter\Managers\Cards;
+use Teleporter\Managers\Globals;
 use Teleporter\Managers\Players;
 use Teleporter\Managers\Tiles;
 
@@ -59,14 +61,17 @@ class fixtheteleporter extends Table
     protected function setupNewGame( $players, $options = array() )
     {
       Players::setupNewGame($players);
-        Tiles::setupNewGame($players);
-        $this->activeNextPlayer();
+      Tiles::setupNewGame($players);
+      Cards::setupNewGame($players);
+      Globals::pickNextCard();
+      $this->activeNextPlayer();
     }
 
     protected function getAllDatas()
     {
         return [
           'players' => Players::getUiData(),
+          'card' => Cards::getCurrentCardValues(),
         ];
     }
 

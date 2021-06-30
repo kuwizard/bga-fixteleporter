@@ -11,7 +11,9 @@
 -->
 
 <div id="board">
-    <div id="player_board">
+    <div id="player_board"></div>
+    <div id="card">
+        <div id="card_container"></div>
     </div>
 </div>
 
