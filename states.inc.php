@@ -16,20 +16,21 @@
  
 $machinestates = [
     ST_GAME_SETUP => [
-        "name" => "gameSetup",
-        "description" => "",
-        "type" => "manager",
-        "action" => "stGameSetup",
-        "transitions" => ['' => ST_FIX_TELEPORTER]
+        'name' => 'gameSetup',
+        'description' => '',
+        'type' => 'manager',
+        'action' => 'stGameSetup',
+        'transitions' => ['' => ST_FIX_TELEPORTER]
     ],
 
     ST_FIX_TELEPORTER => [
-    		"name" => "playerTurn",
-    		"description" => clienttranslate('${actplayer} must fix the teleporter'),
-    		"descriptionmyturn" => clienttranslate('${you} must fix the teleporter'),
-    		"type" => "activeplayer",
-    		"possibleactions" => ['actFlip', 'actChange', 'actDone'],
-    		"transitions" => ['' => ST_CHECK]
+    		'name' => 'playerTurn',
+    		'description' => clienttranslate('${actplayer} must fix the teleporter'),
+    		'descriptionmyturn' => clienttranslate('${you} must fix the teleporter'),
+    		'type' => 'multipleactiveplayer',
+        'action' => 'stMakeEveryoneActive',
+    		'possibleactions' => ['actFlip', 'actChange', 'actDone'],
+    		'transitions' => ['' => ST_CHECK]
     ],
 
     ST_CHECK => [
@@ -38,18 +39,18 @@ $machinestates = [
       'type' => 'game',
       'action' => 'stCheck',
       'updateGameProgression' => true,
-      "transitions" => [
+      'transitions' => [
         ST_FIX_TELEPORTER => ST_FIX_TELEPORTER,
         ST_GAME_END => ST_GAME_END
       ]
     ],
 
     ST_GAME_END => [
-        "name" => "gameEnd",
-        "description" => clienttranslate("End of game"),
-        "type" => "manager",
-        "action" => "stGameEnd",
-        "args" => "argGameEnd",
+        'name' => 'gameEnd',
+        'description' => clienttranslate('End of game'),
+        'type' => 'manager',
+        'action' => 'stGameEnd',
+        'args' => 'argGameEnd',
       ]
 ];
 

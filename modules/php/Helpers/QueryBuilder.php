@@ -329,7 +329,6 @@ class QueryBuilder extends \APP_DbObject
     $num_args = func_num_args();
     $args = func_get_args();
 
-    $field_name = '';
     $order = 'ASC';
     if ($num_args == 1) {
       if (is_array($args[0])) {

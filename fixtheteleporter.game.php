@@ -104,6 +104,16 @@ class fixtheteleporter extends Table
 
       throw new feException( "Zombie mode not supported at this game state: ".$statename );
     }
+
+    /////////////////////////////////////////////////////////////
+    // Exposing protected methods, please use at your own risk //
+    /////////////////////////////////////////////////////////////
+
+    // Exposing protected method getCurrentPlayerId
+    public static function getCurrentPId()
+    {
+      return self::getCurrentPlayerId();
+    }
     
 ///////////////////////////////////////////////////////////////////////////////////:
 ////////// DB upgrade

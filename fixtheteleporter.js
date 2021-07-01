@@ -40,7 +40,7 @@ function (dojo, declare) {
             for( var player_id in gamedatas.players )
             {
                 var player = gamedatas.players[player_id];
-                if (player_id === this.gamedatas.gamestate.active_player) {
+                if (player.id === this.player_id) {
                     player.hand.forEach((type, position) => {
                         dojo.place(this.format_block('jstpl_flip', {mirror: [1,2].includes(position), position: position}), 'player_board');
                         dojo.place(this.format_block('jstpl_tile', {type: type, position: position}), 'player_board');

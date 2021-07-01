@@ -42,25 +42,22 @@
     public function actFlip()
     {
       self::setAjaxMode();
-      $playerId = $this->game->getActivePlayerId();
-      $this->game->actFlip($playerId, self::getInt('position'));
+      $this->game->actFlip(self::getInt('position'));
       self::ajaxResponse();
     }
 
     public function actChange()
     {
       self::setAjaxMode();
-      $playerId = $this->game->getActivePlayerId();
       $positions = array_map('intval', explode(';', self::getArg('positions', AT_numberlist, false)));
-      $this->game->actChange($playerId, $positions);
+      $this->game->actChange($positions);
       self::ajaxResponse();
     }
 
     public function actDone()
     {
       self::setAjaxMode();
-      $playerId = $this->game->getActivePlayerId();
-      $this->game->actDone($playerId);
+      $this->game->actDone();
       self::ajaxResponse();
     }
 
