@@ -20,31 +20,34 @@ div#everything_else_area {
   width: 100%;
   position: relative;
   display: grid;
-  grid-gap: 10px; }
-  div#everything_else_area[data-players="2"] .player_board[data-no="1"] {
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr; }
+  div#everything_else_area[data-players="2"] .player_area[data-no="1"] {
     grid-column-start: 2;
     grid-row-start: 2; }
-  div#everything_else_area[data-players="3"] .player_board[data-no="1"] {
+  div#everything_else_area[data-players="3"] .player_area[data-no="1"] {
     grid-column-start: 3;
     grid-row-start: 2; }
-  div#everything_else_area[data-players="3"] .player_board[data-no="2"] {
+  div#everything_else_area[data-players="3"] .player_area[data-no="2"] {
     grid-column-start: 1;
     grid-row-start: 2; }
-  div#everything_else_area[data-players="4"] .player_board[data-no="1"] {
+  div#everything_else_area[data-players="4"] .player_area[data-no="1"] {
     grid-column-start: 3;
     grid-row-start: 1; }
-  div#everything_else_area[data-players="4"] .player_board[data-no="2"] {
+  div#everything_else_area[data-players="4"] .player_area[data-no="2"] {
     grid-column-start: 2;
     grid-row-start: 2; }
-  div#everything_else_area[data-players="4"] .player_board[data-no="3"] {
+  div#everything_else_area[data-players="4"] .player_area[data-no="3"] {
     grid-column-start: 1;
     grid-row-start: 1; }
 
 div.player_board {
-  display: grid;
-  justify-self: center; }
+  display: grid; }
   div.player_board[data-current='true'] {
     justify-content: center; }
+
+div.player_area {
+  justify-self: center; }
 
 div#game_play_area {
   display: flex;
@@ -52,6 +55,10 @@ div#game_play_area {
 
 div#everything_else_area {
   margin-top: 10px; }
+
+div#player_name {
+  display: flex;
+  justify-content: center; }
 
 #tile {
   background-image: url("img/telepTilesSmall.png");
@@ -157,20 +164,32 @@ div#everything_else_area {
     cursor: pointer; }
 
 div.player_board #tile[data-position="0"] {
-  grid-column-start: 2;
+  grid-column-start: 1;
   grid-row-start: 1; }
+
+div.player_board[data-current="true"] #tile[data-position="0"] {
+  grid-column-start: 2; }
 
 div.player_board #tile[data-position="1"] {
-  grid-column-start: 3;
+  grid-column-start: 2;
   grid-row-start: 1; }
 
-div.player_board #tile[data-position="2"] {
-  grid-column-start: 3;
-  grid-row-start: 2; }
+div.player_board[data-current="true"] #tile[data-position="1"] {
+  grid-column-start: 3; }
 
-div.player_board #tile[data-position="3"] {
+div.player_board #tile[data-position="2"] {
   grid-column-start: 2;
   grid-row-start: 2; }
+
+div.player_board[data-current="true"] #tile[data-position="2"] {
+  grid-column-start: 3; }
+
+div.player_board #tile[data-position="3"] {
+  grid-column-start: 1;
+  grid-row-start: 2; }
+
+div.player_board[data-current="true"] #tile[data-position="3"] {
+  grid-column-start: 2; }
 
 div#flip {
   display: flex;
@@ -202,7 +221,8 @@ svg#flip_svg {
 div#card {
   grid-column-start: 2;
   grid-row-start: 1;
-  justify-self: center; }
+  justify-self: center;
+  align-self: end; }
   div#card #card_container {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;

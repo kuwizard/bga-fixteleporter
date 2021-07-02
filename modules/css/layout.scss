@@ -7,9 +7,10 @@ div#everything_else_area {
   position: relative;
   display: grid;
   grid-gap: $insideGap;
+  grid-template-columns: 1fr 1fr 1fr;
 
   @each $nPlayers, $layo in $layout {
-    &[data-players="#{$nPlayers}"] .player_board {
+    &[data-players="#{$nPlayers}"] .player_area {
       @each $i, $place in $layo {
         &[data-no="#{$i}"] {
           grid-column-start: map-get($place, 'col');
@@ -22,11 +23,14 @@ div#everything_else_area {
 
 div.player_board {
   display: grid;
-  justify-self: center;
 
   &[data-current='true'] {
     justify-content: center;
   }
+}
+
+div.player_area {
+  justify-self: center;
 }
 
 div#game_play_area {
@@ -36,4 +40,9 @@ div#game_play_area {
 
 div#everything_else_area {
   margin-top: $insideGap;
+}
+
+div#player_name {
+  display: flex;
+  justify-content: center;
 }

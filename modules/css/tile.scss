@@ -29,11 +29,14 @@
   }
 }
 
-div.player_board #tile {
+div.player_board {
   @for $position from 0 through 3 {
-    &[data-position="#{$position}"] {
-      grid-column-start: round((($position % 3) + 2)/2) + 1;
+    #tile[data-position="#{$position}"] {
+      grid-column-start: round((($position % 3) + 2)/2);
       grid-row-start: round($position / 2 + 0.5);
+    }
+    &[data-current="true"] #tile[data-position="#{$position}"] {
+      grid-column-start: round((($position % 3) + 2)/2) + 1;
     }
   }
 }

@@ -2,6 +2,7 @@ div#card {
   grid-column-start: 2;
   grid-row-start: 1;
   justify-self: center;
+  align-self: end;
 
   #card_container {
     grid-template-columns: 1fr 1fr;

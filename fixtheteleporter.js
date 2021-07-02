@@ -40,9 +40,15 @@ function (dojo, declare) {
             Object.values(gamedatas.players_ordered).forEach((player, i) =>
             {
                 const current = player.id === this.player_id;
-                const params = { no: i, playerId: player.id, current: current };
                 const placeId = current ? 'current_player_area' : 'everything_else_area';
-                dojo.place(this.format_block('jstpl_playerBoard', params), placeId);
+                const playerArea = dojo.place(this.format_block('jstpl_playerArea', { playerId: player.id, no: i }), placeId);
+                if (!current) {
+                    dojo.place(this.format_block('jstpl_playerName', {
+                        playerName: player.name,
+                        color: player.color
+                    }), playerArea);
+                }
+                dojo.place(this.format_block('jstpl_playerBoard', { playerId: player.id, current: current }), playerArea);
                 player.hand.forEach((type, position) => {
                     if (i === 0) {
                         dojo.place(this.format_block('jstpl_flip', {
