@@ -36,11 +36,13 @@ function (dojo, declare) {
         {
             console.log( "Starting game setup" );
             // Setting up player boards
-            dojo.attr('board', 'data-players', Object.entries(gamedatas.players).length);
+            dojo.attr('everything_else_area', 'data-players', Object.entries(gamedatas.players).length);
             Object.values(gamedatas.players_ordered).forEach((player, i) =>
             {
-                const params = { no: i, playerId: player.id, current: player.id === this.player_id };
-                dojo.place(this.format_block('jstpl_playerBoard', params), 'board');
+                const current = player.id === this.player_id;
+                const params = { no: i, playerId: player.id, current: current };
+                const placeId = current ? 'current_player_area' : 'everything_else_area';
+                dojo.place(this.format_block('jstpl_playerBoard', params), placeId);
                 player.hand.forEach((type, position) => {
                     if (i === 0) {
                         dojo.place(this.format_block('jstpl_flip', {

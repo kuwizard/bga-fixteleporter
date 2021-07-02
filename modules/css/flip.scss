@@ -2,6 +2,7 @@ div#flip {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: $insideGap;
 
   &[data-mirror="true"] {
     -webkit-transform: scaleX(-1);

@@ -14,55 +14,49 @@
  *
  */
 div#board {
+  width: 100%; }
+
+div#everything_else_area {
   width: 100%;
-  max-width: 900px;
-  min-height: 900px;
   position: relative;
   display: grid;
-  grid-template-columns: 0.5fr 428px 0.5fr;
-  grid-template-rows: 308px 300px 1fr;
   grid-gap: 10px; }
-  div#board[data-players="2"] .player_board[data-no="0"] {
+  div#everything_else_area[data-players="2"] .player_board[data-no="1"] {
     grid-column-start: 2;
-    grid-row-start: 1; }
-  div#board[data-players="2"] .player_board[data-no="1"] {
-    grid-column-start: 2;
-    grid-row-start: 3; }
-  div#board[data-players="3"] .player_board[data-no="0"] {
-    grid-column-start: 2;
-    grid-row-start: 1; }
-  div#board[data-players="3"] .player_board[data-no="1"] {
-    grid-column-start: 3;
-    grid-row-start: 3; }
-  div#board[data-players="3"] .player_board[data-no="2"] {
-    grid-column-start: 1;
-    grid-row-start: 3; }
-  div#board[data-players="4"] .player_board[data-no="0"] {
-    grid-column-start: 2;
-    grid-row-start: 1; }
-  div#board[data-players="4"] .player_board[data-no="1"] {
+    grid-row-start: 2; }
+  div#everything_else_area[data-players="3"] .player_board[data-no="1"] {
     grid-column-start: 3;
     grid-row-start: 2; }
-  div#board[data-players="4"] .player_board[data-no="2"] {
-    grid-column-start: 2;
-    grid-row-start: 3; }
-  div#board[data-players="4"] .player_board[data-no="3"] {
+  div#everything_else_area[data-players="3"] .player_board[data-no="2"] {
     grid-column-start: 1;
     grid-row-start: 2; }
+  div#everything_else_area[data-players="4"] .player_board[data-no="1"] {
+    grid-column-start: 3;
+    grid-row-start: 1; }
+  div#everything_else_area[data-players="4"] .player_board[data-no="2"] {
+    grid-column-start: 2;
+    grid-row-start: 2; }
+  div#everything_else_area[data-players="4"] .player_board[data-no="3"] {
+    grid-column-start: 1;
+    grid-row-start: 1; }
 
 div.player_board {
   display: grid;
-  grid-template-columns: 60px 154px 154px 60px;
-  grid-template-rows: 1fr 1fr; }
+  justify-self: center; }
+  div.player_board[data-current='true'] {
+    justify-content: center; }
 
 div#game_play_area {
   display: flex;
   justify-content: center; }
 
+div#everything_else_area {
+  margin-top: 10px; }
+
 #tile {
-  background-image: url("img/telepTiles.png");
-  width: 150px;
-  height: 150px; }
+  background-image: url("img/telepTilesSmall.png");
+  width: 120px;
+  height: 120px; }
   #tile[data-type="1"] {
     background-position-x: -0px;
     background-position-y: 0; }
@@ -75,7 +69,7 @@ div#game_play_area {
   #tile[data-type="1"][data-position="3"] {
     transform: rotate(270deg); }
   #tile[data-type="2"] {
-    background-position-x: -150px;
+    background-position-x: -120px;
     background-position-y: 0; }
   #tile[data-type="2"][data-position="0"] {
     transform: rotate(270deg); }
@@ -86,7 +80,7 @@ div#game_play_area {
   #tile[data-type="2"][data-position="3"] {
     transform: rotate(180deg); }
   #tile[data-type="3"] {
-    background-position-x: -300px;
+    background-position-x: -240px;
     background-position-y: 0; }
   #tile[data-type="3"][data-position="0"] {
     transform: rotate(180deg); }
@@ -97,7 +91,7 @@ div#game_play_area {
   #tile[data-type="3"][data-position="3"] {
     transform: rotate(90deg); }
   #tile[data-type="4"] {
-    background-position-x: -450px;
+    background-position-x: -360px;
     background-position-y: 0; }
   #tile[data-type="4"][data-position="0"] {
     transform: rotate(90deg); }
@@ -108,7 +102,7 @@ div#game_play_area {
   #tile[data-type="4"][data-position="3"] {
     transform: rotate(0deg); }
   #tile[data-type="5"] {
-    background-position-x: -600px;
+    background-position-x: -480px;
     background-position-y: 0; }
   #tile[data-type="5"][data-position="0"] {
     transform: rotate(0deg); }
@@ -119,7 +113,7 @@ div#game_play_area {
   #tile[data-type="5"][data-position="3"] {
     transform: rotate(270deg); }
   #tile[data-type="6"] {
-    background-position-x: -750px;
+    background-position-x: -600px;
     background-position-y: 0; }
   #tile[data-type="6"][data-position="0"] {
     transform: rotate(270deg); }
@@ -130,7 +124,7 @@ div#game_play_area {
   #tile[data-type="6"][data-position="3"] {
     transform: rotate(180deg); }
   #tile[data-type="7"] {
-    background-position-x: -900px;
+    background-position-x: -720px;
     background-position-y: 0; }
   #tile[data-type="7"][data-position="0"] {
     transform: rotate(180deg); }
@@ -141,7 +135,7 @@ div#game_play_area {
   #tile[data-type="7"][data-position="3"] {
     transform: rotate(90deg); }
   #tile[data-type="8"] {
-    background-position-x: -1050px;
+    background-position-x: -840px;
     background-position-y: 0; }
   #tile[data-type="8"][data-position="0"] {
     transform: rotate(90deg); }
@@ -181,7 +175,8 @@ div.player_board #tile[data-position="3"] {
 div#flip {
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  margin: 10px; }
   div#flip[data-mirror="true"] {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1); }
@@ -206,7 +201,7 @@ svg#flip_svg {
 
 div#card {
   grid-column-start: 2;
-  grid-row-start: 2;
+  grid-row-start: 1;
   justify-self: center; }
   div#card #card_container {
     grid-template-columns: 1fr 1fr;

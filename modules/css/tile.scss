@@ -1,11 +1,11 @@
 #tile {
-  background-image:url("img/telepTiles.png");
+  background-image:url("img/telepTilesSmall.png");
   width: $tileSize;
   height: $tileSize;
 
   @for $tileType from 1 through 8 {
     &[data-type="#{$tileType}"] {
-      background-position-x: -#{-150 + 150 * $tileType}px;
+      background-position-x: -#{-$tileSize + ($tileSize * $tileType)};
       background-position-y: 0;
     }
     @for $position from 0 through 3 {

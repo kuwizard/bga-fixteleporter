@@ -1,12 +1,12 @@
 div#board {
   width: 100%;
-  max-width: 900px;
-  min-height: 900px;
+}
+
+div#everything_else_area {
+  width: 100%;
   position: relative;
   display: grid;
-  grid-template-columns: 0.5fr $playerBoardSize 0.5fr;
-  grid-template-rows: 2*$tileSize + 4*$tileBorder 2*$tileSize 1fr;
-  grid-gap: 10px;
+  grid-gap: $insideGap;
 
   @each $nPlayers, $layo in $layout {
     &[data-players="#{$nPlayers}"] .player_board {
@@ -22,11 +22,18 @@ div#board {
 
 div.player_board {
   display: grid;
-  grid-template-columns: $flipWidth $tileSize + 2*$tileBorder $tileSize + 2*$tileBorder $flipWidth;
-  grid-template-rows: 1fr 1fr;
+  justify-self: center;
+
+  &[data-current='true'] {
+    justify-content: center;
+  }
 }
 
 div#game_play_area {
   display: flex;
   justify-content: center;
+}
+
+div#everything_else_area {
+  margin-top: $insideGap;
 }
