@@ -2,3 +2,21 @@ $tileSize: 150px;
 $tileBorder: 2px;
 $flipWidth: 60px;
 $playerBoardSize: 2*$tileSize + 2*$flipWidth + 4*$tileBorder;
+
+$layout:(
+    2:(
+        0:("col" : 2, "row" : 1, "align": center),
+        1:("col" : 2, "row" : 3, "align": center),
+    ),
+    3:(
+        0:("col" : 2, "row" : 1, "align": center),
+        1:("col" : 3, "row" : 3, "align": left),
+        2:("col" : 1, "row" : 3, "align": right),
+    ),
+    4:(
+        0:("col" : 2, "row" : 1, "align": center),
+        1:("col" : 3, "row" : 2, "align": left),
+        2:("col" : 2, "row" : 3, "align": center),
+        3:("col" : 1, "row" : 2, "align": right),
+    ),
+)

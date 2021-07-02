@@ -72,7 +72,8 @@ class fixtheteleporter extends Table
     protected function getAllDatas()
     {
         return [
-          'players' => Players::getUiData(),
+          'players' => Players::getUiData()->toAssoc(),
+          'players_ordered' => Players::getUiData()->toArray(),
           'card' => Cards::getCurrentCardValues(),
         ];
     }

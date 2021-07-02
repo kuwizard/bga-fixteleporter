@@ -7,14 +7,23 @@ div#board {
   grid-template-columns: 0.5fr $playerBoardSize 0.5fr;
   grid-template-rows: 2*$tileSize + 4*$tileBorder 2*$tileSize 1fr;
   grid-gap: 10px;
+
+  @each $nPlayers, $layo in $layout {
+    &[data-players="#{$nPlayers}"] .player_board {
+      @each $i, $place in $layo {
+        &[data-no="#{$i}"] {
+          grid-column-start: map-get($place, 'col');
+          grid-row-start: map-get($place, 'row');
+        }
+      }
+    }
+  }
 }
 
-div#player_board {
+div.player_board {
   display: grid;
   grid-template-columns: $flipWidth $tileSize + 2*$tileBorder $tileSize + 2*$tileBorder $flipWidth;
   grid-template-rows: 1fr 1fr;
-  grid-column-start: 2;
-  grid-row-start: 1;
 }
 
 div#game_play_area {

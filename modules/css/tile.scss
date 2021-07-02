@@ -16,7 +16,7 @@
   }
 }
 
-div#player_board #tile {
+.player_board[data-current="true"] #tile {
   border-width: $tileBorder;
   border-style: solid;
   border-color: transparent;
@@ -27,7 +27,9 @@ div#player_board #tile {
   &:hover {
     cursor: pointer;
   }
+}
 
+div.player_board #tile {
   @for $position from 0 through 3 {
     &[data-position="#{$position}"] {
       grid-column-start: round((($position % 3) + 2)/2) + 1;

@@ -35,18 +35,22 @@ function (dojo, declare) {
         setup(gamedatas)
         {
             console.log( "Starting game setup" );
-            
             // Setting up player boards
-            for( var player_id in gamedatas.players )
+            dojo.attr('board', 'data-players', Object.entries(gamedatas.players).length);
+            Object.values(gamedatas.players_ordered).forEach((player, i) =>
             {
-                var player = gamedatas.players[player_id];
-                if (player.id === this.player_id) {
-                    player.hand.forEach((type, position) => {
-                        dojo.place(this.format_block('jstpl_flip', {mirror: [1,2].includes(position), position: position}), 'player_board');
-                        dojo.place(this.format_block('jstpl_tile', {type: type, position: position}), 'player_board');
-                    });
-                }
-            }
+                const params = { no: i, playerId: player.id, current: player.id === this.player_id };
+                dojo.place(this.format_block('jstpl_playerBoard', params), 'board');
+                player.hand.forEach((type, position) => {
+                    if (i === 0) {
+                        dojo.place(this.format_block('jstpl_flip', {
+                            mirror: [1, 2].includes(position),
+                            position: position
+                        }), `player_board_${player.id}`);
+                    }
+                    dojo.place(this.format_block('jstpl_tile', {type: type, position: position}), `player_board_${player.id}`);
+                });
+            });
             this.displayNewCard(gamedatas.card);
             dojo.query('.flip').forEach((flipButton) => {
                 dojo.connect(flipButton, 'onclick', (evt) =>  {
@@ -55,14 +59,13 @@ function (dojo, declare) {
                     this.onClickFlip(flipButton.dataset.position)
                 });
             })
-            dojo.query('.tile').forEach((tile) => {
+            dojo.query('.player_board[data-current="true"] .tile').forEach((tile) => {
                 this.connectToAction(tile);
             });
 
             this.setupNotifications();
             console.log( "Ending game setup" );
         },
-       
 
         ///////////////////////////////////////////////////
         //// Game & client states
@@ -145,7 +148,7 @@ function (dojo, declare) {
 
         onClickSelect(position) {
             let selected = dojo.query('.selected');
-            const tileAtPosition = dojo.query(`.tile[data-position='${position}']`)[0]
+            const tileAtPosition = dojo.query(`.player_board[data-current='true'] .tile[data-position='${position}']`)[0]
             if (selected.length === 0) {
                 dojo.addClass(tileAtPosition, 'selected');
             } else {
@@ -234,17 +237,19 @@ function (dojo, declare) {
         },
 
         notif_flipTile(n) {
-            const tile = dojo.query(`.tile[data-type='${n.args.from}']`)[0];
+            const tile = dojo.query(`#player_board_${n.args.player_id} .tile[data-type='${n.args.from}']`)[0];
             const position = tile.dataset.position;
             dojo.destroy(tile);
-            const newTile = dojo.place(this.format_block('jstpl_tile', {type: n.args.to, position: position}), 'player_board');
-            this.connectToAction(newTile);
+            const newTile = dojo.place(this.format_block('jstpl_tile', {type: n.args.to, position: position}), `player_board_${n.args.player_id}`);
+            if (parseInt(n.args.player_id) === this.player_id) {
+                this.connectToAction(newTile);
+            }
         },
 
         notif_changeTiles(n) {
             const positions = n.args.positions;
             const tiles = positions.map((position) => {
-                return dojo.query(`.tile[data-position='${position}']`)[0];
+                return dojo.query(`#player_board_${n.args.player_id} .tile[data-position='${position}']`)[0];
             });
             tiles.forEach((tile) => {
                 const oldPosition = parseInt(tile.dataset.position);
@@ -252,7 +257,9 @@ function (dojo, declare) {
                 dojo.attr(tile, 'data-position', newPosition);
             });
             const selected = dojo.query('.selected')[0];
-            dojo.removeClass(selected, 'selected');
+            if (selected !== undefined) {
+                dojo.removeClass(selected, 'selected');
+            }
         },
 
         notif_newScore(n) {

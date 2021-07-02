@@ -59,6 +59,11 @@ class Players extends \Teleporter\Helpers\DB_Manager
     return self::DB()->get(false);
   }
 
+  public static function getAllStartingWith($player)
+  {
+    return self::DB()->orderBy("player_no < {$player->getNo()}, player_no")->get();
+  }
+
   public static function get($playerId = null)
   {
     $playerId = $playerId ?: self::getActiveId();
@@ -79,7 +84,8 @@ class Players extends \Teleporter\Helpers\DB_Manager
 
   public static function getUiData()
   {
-    return self::getAll()->map(function ($player) {
+    $players = self::getAllStartingWith(self::getCurrent());
+    return $players->map(function ($player) {
       return $player->getUiData();
     });
   }
