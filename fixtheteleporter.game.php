@@ -80,7 +80,15 @@ class fixtheteleporter extends Table
 
     function getGameProgression()
     {
-        return 50;
+        $players = Players::getAll();
+        $scoresArray = $players->map(function ($player) {
+          return $player->getScore();
+        })->toArray();
+        $scoresSum = array_sum($scoresArray);
+        $maxScoreSum = count($scoresArray) * 4 + 1;
+        $progression = ($scoresSum * 100)/$maxScoreSum;
+//        return $progression; // TODO: Uncomment this line before beta and remove next one
+         return 50 + $progression/2;
     }
 
     function zombieTurn( $state, $active_player )
