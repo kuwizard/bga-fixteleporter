@@ -13,7 +13,11 @@ trait FixTeleporterTrait
   {
     $players = Players::getAll()->getIds();
     $nonActivePlayer = Players::getNotActive();
-    $this->gamestate->setPlayersMultiactive(array_diff($players, [$nonActivePlayer]), ST_FIX_TELEPORTER, true);
+    $activePlayers = array_diff($players, [$nonActivePlayer]);
+    foreach ($activePlayers as $activePlayerId) {
+      self::giveExtraTime($activePlayerId);
+    }
+    $this->gamestate->setPlayersMultiactive($activePlayers, ST_FIX_TELEPORTER, true);
   }
 
   public function actFlip($position)

@@ -13,25 +13,25 @@
 $gameinfos = array( 
 
 // Name of the game in English (will serve as the basis for translation) 
-'game_name' => "My Great Game",
+'game_name' => "Please Fix the Teleporter",
 
 // Game designer (or game designers, separated by commas)
-'designer' => 'John Doe',       
+'designer' => 'Ian Zang',
 
 // Game artist (or game artists, separated by commas)
-'artist' => 'Jane Doe',         
+'artist' => 'Nick Nazzaro, Aaron Andrew Wilson',
 
 // Year of FIRST publication of this game. Can be negative.
-'year' => 2000,                 
+'year' => 2020,
 
 // Game publisher (use empty string if there is no publisher)
-'publisher' => 'My Publishing Company',                     
+'publisher' => 'Gravitation Games',
 
 // Url of game publisher website
-'publisher_website' => 'http://www.mypublishingcompany.com/',   
+'publisher_website' => 'https://gravitation.games/',
 
 // Board Game Geek ID of the publisher
-'publisher_bgg_id' => 1234,
+'publisher_bgg_id' => 45244,
 
 // Board game geek ID of the game
 'bgg_id' => 305983,
@@ -50,16 +50,16 @@ $gameinfos = array(
 
 
 // Estimated game duration, in minutes (used only for the launch, afterward the real duration is computed)
-'estimated_duration' => 30,           
+'estimated_duration' => 4,
 
 // Time in second add to a player when "giveExtraTime" is called (speed profile = fast)
-'fast_additional_time' => 30,           
+'fast_additional_time' => 50,
 
 // Time in second add to a player when "giveExtraTime" is called (speed profile = medium)
-'medium_additional_time' => 40,           
+'medium_additional_time' => 70,
 
 // Time in second add to a player when "giveExtraTime" is called (speed profile = slow)
-'slow_additional_time' => 50,           
+'slow_additional_time' => 90,
 
 // If you are using a tie breaker in your game (using "player_score_aux"), you must describe here
 // the formula used to compute "player_score_aux". This description will be used as a tooltip to explain
@@ -144,7 +144,7 @@ $gameinfos = array(
 //  http://en.doc.boardgamearena.com/Game_meta-information:_gameinfos.inc.php
 //  IMPORTANT: this list should be ORDERED, with the most important tag first.
 //  IMPORTANT: it is mandatory that the FIRST tag is 1, 2, 3 and 4 (= game category)
-'tags' => array( 2 ),
+'tags' => array(2, 10, 209, 207, 101),
 
 
 //////// BGA SANDBOX ONLY PARAMETERS (DO NOT MODIFY)
