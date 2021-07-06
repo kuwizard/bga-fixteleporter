@@ -35,7 +35,7 @@ $machinestates = [
 
     ST_CHECK => [
       'name' => 'check',
-      'description' => '',
+      'description' => clienttranslate('Checking if card matches...'),
       'type' => 'game',
       'action' => 'stCheck',
       'updateGameProgression' => true,

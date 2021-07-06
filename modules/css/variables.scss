@@ -1,4 +1,4 @@
-$tileSize: 120px;
+$tileSize: 115px;
 $tileBorder: 2px;
 $flipWidth: 60px;
 $insideGap: 10px;
@@ -17,4 +17,6 @@ $layout:(
         2:("col" : 2, "row" : 2, "align": center),
         3:("col" : 1, "row" : 1, "align": right),
     ),
-)
+);
+
+$colors:(#0f93a0, #738e35, #e36842, #dfe089);

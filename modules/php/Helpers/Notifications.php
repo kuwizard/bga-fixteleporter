@@ -30,15 +30,19 @@ class Notifications
     self::notifyAll('changeTiles', $data);
   }
 
-  public static function newScore($player)
+  public static function matchChecked($player, $mistakes)
   {
-    $msg = clienttranslate('${player_name} matches the card and claims it');
-    self::notifyAll('newScore', ['player' => $player], $msg);
+    if (in_array(false, $mistakes)) {
+      $msg = clienttranslate('${player_name} does NOT match the card correctly and may not participate in the next round');
+    } else {
+      $msg = clienttranslate('${player_name} matches the card and claims it');
+    }
+    self::notifyAll('matchChecked', ['player' => $player, 'mistakes' => $mistakes, 'newCard' => Cards::getCurrentCardValues()], $msg);
   }
 
-  public static function newCard()
+  public static function playerClaimedFinish($player)
   {
-    self::notifyAll('newCard', ['card' => Cards::getCurrentCardValues()]);
+    self::notifyAll('playerClaimedFinish', ['player' => $player]);
   }
 
   private static function updateArgs(&$data)

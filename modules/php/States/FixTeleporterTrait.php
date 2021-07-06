@@ -4,6 +4,7 @@ namespace Teleporter\States;
 
 use Teleporter\Helpers\Notifications;
 use Teleporter\Managers\Globals;
+use Teleporter\Managers\Players;
 use Teleporter\Managers\Tiles;
 
 trait FixTeleporterTrait
@@ -26,6 +27,8 @@ trait FixTeleporterTrait
   public function actDone()
   {
     $playerId = self::getCurrentPId();
+    $player = Players::get($playerId);
+    Notifications::playerClaimedFinish($player);
     Globals::setPlayerToCheck($playerId);
     $this->gamestate->nextState();
   }

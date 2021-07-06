@@ -17,8 +17,11 @@ trait CheckTrait
     if ($correctValues === $suggestedValues) {
       Players::givePointTo($playerId);
     }
+    $result = array_map(function ($value, $key) use ($suggestedValues, $correctValues) {
+      return $value === $correctValues[$key];
+    }, $suggestedValues, array_keys($suggestedValues));
     Cards::pickNextCard();
-    Notifications::newCard();
+    Notifications::matchChecked(Players::get($playerId), $result);
     $this->gamestate->nextState(ST_FIX_TELEPORTER);
   }
 }

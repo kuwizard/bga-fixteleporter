@@ -12,9 +12,7 @@
 <div id="board">
     <div id="current_player_area"></div>
     <div id="everything_else_area">
-        <div id="card">
-            <div id="card_container"></div>
-        </div>
+        <div id="card"></div>
     </div>
 </div>
 
@@ -24,6 +22,7 @@
     var jstpl_playerArea = `<div id="player_area_\${playerId}" class="player_area" data-no="\${no}"></div>`;
     var jstpl_playerBoard = `<div id="player_board_\${playerId}" class="player_board" data-current="\${current}"></div>`;
     var jstpl_playerName = `<div id="player_name" class="player-name" style="color: #\${color}">\${playerName}</div>`;
+    var jstpl_card = '<div id="card"></div>';
 </script>
 
 {OVERALL_GAME_FOOTER}

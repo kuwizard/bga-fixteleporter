@@ -98,6 +98,5 @@ class Players extends \Teleporter\Helpers\DB_Manager
       ->update(['player_score' => $oldScore + 1])
       ->where('player_id', $playerId)
       ->run();
-    Notifications::newScore($player);
   }
 }

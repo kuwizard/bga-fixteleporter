@@ -3,6 +3,14 @@
   width: $tileSize;
   height: $tileSize;
 
+  &.checked-correct {
+    border-color: #00b300 !important;
+  }
+
+  &.checked-incorrect {
+    border-color: red !important;
+  }
+
   @for $tileType from 1 through 8 {
     &[data-type="#{$tileType}"] {
       background-position-x: -#{-$tileSize + ($tileSize * $tileType)};
@@ -24,9 +32,13 @@
   &.selected {
     border-color: red;
   }
-  &:hover {
-    cursor: pointer;
-  }
+}
+
+.player_board:not([data-current="true"]) #tile {
+  border-style: solid;
+  border-color: transparent;
+  background-clip: padding-box;
+  border-width: 2px;
 }
 
 div.player_board {
