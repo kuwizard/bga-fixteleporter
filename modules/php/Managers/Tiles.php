@@ -28,7 +28,9 @@ class Tiles extends \Teleporter\Helpers\Pieces
     $result = self::DB()
       ->select(['position', 'type'])
       ->where('player_id', $playerId)
-      ->orderBy('position')->get()->toArray();
+      ->orderBy('position')
+      ->get()
+      ->toArray();
     return array_map(function ($el) {
       return (int) $el['type'];
     }, $result);

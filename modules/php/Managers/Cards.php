@@ -14,7 +14,9 @@ class Cards extends \Teleporter\Helpers\Pieces
   {
     shuffle(self::$cards);
     foreach (self::$cards as $card) {
-      self::DB()->multipleInsert(self::$customFields)->values([$card]);
+      self::DB()
+        ->multipleInsert(self::$customFields)
+        ->values([$card]);
     }
   }
 
@@ -32,8 +34,7 @@ class Cards extends \Teleporter\Helpers\Pieces
 
   public static function pickNextCard()
   {
-    if (Globals::getCurrentCardId() === sizeof(self::$cards))
-    {
+    if (Globals::getCurrentCardId() === sizeof(self::$cards)) {
       // This should not ever happen unless players make mistakes ALL THE TIME
       Globals::resetCardId();
     }

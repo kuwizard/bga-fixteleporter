@@ -16,7 +16,7 @@ class Globals extends \Teleporter\Helpers\DB_Manager
     if ($currentCard === null) {
       self::insert($varName, 1);
     } else {
-      self::update($varName, (int)$currentCard['value'] + 1);
+      self::update($varName, (int) $currentCard['value'] + 1);
     }
   }
 
@@ -27,7 +27,7 @@ class Globals extends \Teleporter\Helpers\DB_Manager
 
   public static function getCurrentCardId()
   {
-    return (int)self::getCurrentCard()['value'];
+    return (int) self::getCurrentCard()['value'];
   }
 
   public static function getPlayerIdToCheck()
@@ -52,16 +52,15 @@ class Globals extends \Teleporter\Helpers\DB_Manager
 
   private static function insert($name, $value)
   {
-    self::DB()
-      ->insert([
-        'name' => $name,
-        'value' => $value,
-      ]);
+    self::DB()->insert([
+      'name' => $name,
+      'value' => $value,
+    ]);
   }
 
   private static function get($name, $getValue = true)
   {
-    $valueArray =  self::DB()
+    $valueArray = self::DB()
       ->select(['value'])
       ->where('name', $name)
       ->get(true);

@@ -23,13 +23,7 @@ class Players extends \Teleporter\Helpers\DB_Manager
   {
     $gameInfos = self::getGame()->getGameinfos();
     $colors = $gameInfos['player_colors'];
-    $query = self::DB()->multipleInsert([
-      'player_id',
-      'player_color',
-      'player_canal',
-      'player_name',
-      'player_avatar',
-    ]);
+    $query = self::DB()->multipleInsert(['player_id', 'player_color', 'player_canal', 'player_name', 'player_avatar']);
 
     $values = [];
     foreach ($players as $playerId => $player) {
@@ -56,7 +50,9 @@ class Players extends \Teleporter\Helpers\DB_Manager
 
   public static function getAllStartingWith($player)
   {
-    return self::DB()->orderBy("player_no < {$player->getNo()}, player_no")->get();
+    return self::DB()
+      ->orderBy("player_no < {$player->getNo()}, player_no")
+      ->get();
   }
 
   public static function get($playerId = null)
@@ -109,7 +105,7 @@ class Players extends \Teleporter\Helpers\DB_Manager
     $nonActive = self::DB()
       ->where('player_active', 0)
       ->get(true);
-      return is_null($nonActive) ? $nonActive : $nonActive->getId();
+    return is_null($nonActive) ? $nonActive : $nonActive->getId();
   }
 
   public static function didSomeoneWin()

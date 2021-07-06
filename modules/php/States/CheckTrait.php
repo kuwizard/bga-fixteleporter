@@ -21,13 +21,16 @@ trait CheckTrait
     } else {
       Players::setNotActive($player);
     }
-    $result = array_map(function ($value, $key) use ($suggestedValues, $correctValues) {
-      return $value === $correctValues[$key];
-    }, $suggestedValues, array_keys($suggestedValues));
+    $result = array_map(
+      function ($value, $key) use ($suggestedValues, $correctValues) {
+        return $value === $correctValues[$key];
+      },
+      $suggestedValues,
+      array_keys($suggestedValues)
+    );
     Cards::pickNextCard();
     Notifications::matchChecked($player, $result);
-    if (Players::didSomeoneWin())
-    {
+    if (Players::didSomeoneWin()) {
       $this->gamestate->nextState(ST_GAME_END);
     } else {
       $this->gamestate->nextState(ST_FIX_TELEPORTER);
