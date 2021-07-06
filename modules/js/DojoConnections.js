@@ -1,11 +1,11 @@
-define(["dojo", "dojo/_base/declare"], (dojo, declare) => {
-  return declare("fixtheteleporter.dojoconnections", ebg.core.gamegui, {
+define(['dojo', 'dojo/_base/declare'], (dojo, declare) => {
+  return declare('fixtheteleporter.dojoconnections', ebg.core.gamegui, {
     constructor() {
       this._connected = {};
     },
 
     connect(element, func, param = null, id = null) {
-      dojo.addClass(element, "connected");
+      dojo.addClass(element, 'connected');
       if (id === null) {
         // This is a flip button and we don't care about id
         id = this.rand();
@@ -13,7 +13,7 @@ define(["dojo", "dojo/_base/declare"], (dojo, declare) => {
           id = this.rand();
         }
       }
-      this._connected[id] = dojo.connect(element, "onclick", (evt) => {
+      this._connected[id] = dojo.connect(element, 'onclick', (evt) => {
         evt.preventDefault();
         evt.stopPropagation();
         func(param);
@@ -31,8 +31,8 @@ define(["dojo", "dojo/_base/declare"], (dojo, declare) => {
     },
 
     dojoDisconnectAllEvents() {
-      dojo.query(".connected").forEach((item) => {
-        dojo.removeClass(item, "connected");
+      dojo.query('.connected').forEach((item) => {
+        dojo.removeClass(item, 'connected');
       });
       this.disconnect(Object.keys(this._connected));
     },
