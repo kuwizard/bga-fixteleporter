@@ -20,12 +20,17 @@ class Globals extends \Teleporter\Helpers\DB_Manager
     }
   }
 
+  public static function resetCardId()
+  {
+    self::update('currentCard', 1);
+  }
+
   public static function getCurrentCardId()
   {
     return (int)self::getCurrentCard()['value'];
   }
 
-  public static function getPlayerToCheck()
+  public static function getPlayerIdToCheck()
   {
     return self::get('player');
   }

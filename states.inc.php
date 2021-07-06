@@ -25,10 +25,10 @@ $machinestates = [
 
     ST_FIX_TELEPORTER => [
     		'name' => 'playerTurn',
-    		'description' => clienttranslate('${actplayer} must fix the teleporter'),
+    		'description' => clienttranslate('All other players must fix the teleporter'),
     		'descriptionmyturn' => clienttranslate('${you} must fix the teleporter'),
     		'type' => 'multipleactiveplayer',
-        'action' => 'stMakeEveryoneActive',
+        'action' => 'stMakeActive',
     		'possibleactions' => ['actFlip', 'actChange', 'actDone'],
     		'transitions' => ['' => ST_CHECK]
     ],

@@ -9,6 +9,13 @@ use Teleporter\Managers\Tiles;
 
 trait FixTeleporterTrait
 {
+  public function stMakeActive()
+  {
+    $players = Players::getAll()->getIds();
+    $nonActivePlayer = Players::getNotActive();
+    $this->gamestate->setPlayersMultiactive(array_diff($players, [$nonActivePlayer]), ST_FIX_TELEPORTER, true);
+  }
+
   public function actFlip($position)
   {
     $playerId = self::getCurrentPId();

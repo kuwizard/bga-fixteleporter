@@ -83,7 +83,9 @@ define([
           });
         });
         this.displayNewCard(gamedatas.card);
-        this.dojoConnectAllFlipsAndTiles();
+        if (gamedatas.players[this.player_id].active) {
+          this.dojoConnectAllFlipsAndTiles();
+        }
 
         this.setupNotifications();
         console.log('Ending game setup');
@@ -280,10 +282,7 @@ define([
           dojo.attr(tile, 'data-position', newPosition);
           this.connect(tile, this.onClickSelect.bind(this), newPosition, newPosition);
         });
-        const selected = dojo.query('.selected')[0];
-        if (selected !== undefined) {
-          dojo.removeClass(selected, 'selected');
-        }
+        this.removeAllClasses(['selected']);
       },
 
       notif_playerClaimedFinish(n) {
@@ -316,6 +315,19 @@ define([
         }
         await this.sleep(duration);
         this.displayNewCard(n.args.newCard);
+        this.removeAllClasses(['checked-correct', 'checked-incorrect']);
+        if (!userFailed || playerId !== this.player_id) {
+          this.dojoConnectAllFlipsAndTiles();
+        }
+      },
+
+      removeAllClasses(classes) {
+        classes.forEach((clazz) => {
+          const elements = dojo.query(`.${clazz}`);
+          elements.forEach((element) => {
+            dojo.removeClass(element, clazz);
+          });
+        });
       },
 
       sleep(ms) {

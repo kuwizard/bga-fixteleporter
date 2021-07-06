@@ -11,17 +11,26 @@ trait CheckTrait
 {
   public function stCheck()
   {
-    $playerId = Globals::getPlayerToCheck();
-    $suggestedValues = Players::get($playerId)->getHand();
+    $playerId = Globals::getPlayerIdToCheck();
+    $player = Players::get($playerId);
+    $suggestedValues = $player->getHand();
     $correctValues = Cards::getCurrentCardValues();
+    Players::setAllActive();
     if ($correctValues === $suggestedValues) {
-      Players::givePointTo($playerId);
+      Players::givePointTo($player);
+    } else {
+      Players::setNotActive($player);
     }
     $result = array_map(function ($value, $key) use ($suggestedValues, $correctValues) {
       return $value === $correctValues[$key];
     }, $suggestedValues, array_keys($suggestedValues));
     Cards::pickNextCard();
-    Notifications::matchChecked(Players::get($playerId), $result);
-    $this->gamestate->nextState(ST_FIX_TELEPORTER);
+    Notifications::matchChecked($player, $result);
+    if (Players::didSomeoneWin())
+    {
+      $this->gamestate->nextState(ST_GAME_END);
+    } else {
+      $this->gamestate->nextState(ST_FIX_TELEPORTER);
+    }
   }
 }

@@ -44,11 +44,6 @@ class Players extends \Teleporter\Helpers\DB_Manager
     self::getGame()->reloadPlayersBasicInfos();
   }
 
-  public static function getActiveId()
-  {
-    return self::getGame()->getActivePlayerId();
-  }
-
   public static function getCurrentId()
   {
     return self::getGame()->getCurrentPId();
@@ -66,15 +61,10 @@ class Players extends \Teleporter\Helpers\DB_Manager
 
   public static function get($playerId = null)
   {
-    $playerId = $playerId ?: self::getActiveId();
+    $playerId = $playerId ?: self::getCurrentId();
     return self::DB()
       ->where($playerId)
       ->getSingle();
-  }
-
-  public static function getActive()
-  {
-    return self::get();
   }
 
   public static function getCurrent()
@@ -90,13 +80,43 @@ class Players extends \Teleporter\Helpers\DB_Manager
     });
   }
 
-  public static function givePointTo($playerId)
+  public static function givePointTo($player)
   {
-    $player = self::get($playerId);
     $oldScore = $player->getScore();
     self::DB()
       ->update(['player_score' => $oldScore + 1])
-      ->where('player_id', $playerId)
+      ->where('player_id', $player->getId())
       ->run();
+  }
+
+  public static function setNotActive($player)
+  {
+    self::DB()
+      ->update(['player_active' => 0])
+      ->where('player_id', $player->getId())
+      ->run();
+  }
+
+  public static function setAllActive()
+  {
+    self::DB()
+      ->update(['player_active' => 1])
+      ->run();
+  }
+
+  public static function getNotActive()
+  {
+    $nonActive = self::DB()
+      ->where('player_active', 0)
+      ->get(true);
+      return is_null($nonActive) ? $nonActive : $nonActive->getId();
+  }
+
+  public static function didSomeoneWin()
+  {
+    $winningPlayer = self::DB()
+      ->where('player_score', 5)
+      ->get(true);
+    return !is_null($winningPlayer);
   }
 }

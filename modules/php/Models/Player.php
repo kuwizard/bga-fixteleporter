@@ -10,6 +10,7 @@ class Player
   protected $name; // player name
   protected $color;
   protected $score;
+  protected $active;
 
   public function __construct($row)
   {
@@ -19,6 +20,7 @@ class Player
       $this->name = $row['player_name'];
       $this->color = $row['player_color'];
       $this->score = (int) $row['player_score'];
+      $this->active = $row['player_active'] === '1';
     }
   }
 
@@ -51,6 +53,7 @@ class Player
       'color' => $this->color,
       'score' => $this->score,
       'hand' => $this->getHand(),
+      'active' => $this->active,
     ];
   }
 

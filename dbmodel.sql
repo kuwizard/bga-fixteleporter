@@ -7,8 +7,10 @@
 -- See http://en.boardgamearena.com/#!doc/Studio for more information.
 -- -----
 
+ALTER TABLE `player` ADD `player_active` TINYINT(1) UNSIGNED NOT NULL DEFAULT true;
+
 CREATE TABLE IF NOT EXISTS `tile` (
-    `tile_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `tile_id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `player_id` INT(10) NOT NULL,
     `type` INT(1) NOT NULL,
     `position` INT(1) NOT NULL,
@@ -16,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `tile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `card` (
-    `card_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `card_id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `tile_1` INT(1) NOT NULL,
     `tile_2` INT(1) NOT NULL,
     `tile_3` INT(1) NOT NULL,
