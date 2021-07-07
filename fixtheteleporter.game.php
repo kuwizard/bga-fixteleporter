@@ -94,23 +94,11 @@ class fixtheteleporter extends Table
   function zombieTurn($state, $active_player)
   {
     $statename = $state['name'];
-    if ($state['type'] === 'activeplayer') {
-      switch ($statename) {
-        default:
-          $this->gamestate->nextState('zombiePass');
-          break;
-      }
-
-      return;
-    }
-
     if ($state['type'] === 'multipleactiveplayer') {
       // Make sure player is in a non blocking status for role turn
       $this->gamestate->setPlayerNonMultiactive($active_player, '');
-
       return;
     }
-
     throw new feException('Zombie mode not supported at this game state: ' . $statename);
   }
 

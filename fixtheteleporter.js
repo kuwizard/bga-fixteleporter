@@ -30,7 +30,6 @@ define([
       constructor: function () {
         console.log('fixtheteleporter constructor');
         this._notifications = [['flipTile'], ['changeTiles'], ['playerClaimedFinish'], ['matchChecked', 5000]];
-        this._connected = [];
       },
 
       setup(gamedatas) {
@@ -212,6 +211,7 @@ define([
         dojo.query('.player_board[data-current="true"] .tile').forEach((tile) => {
           this.connect(tile, this.onClickSelect.bind(this), tile.dataset.position, tile.dataset.position);
         });
+        this.connect(dojo.query('#card')[0], this.onClickFinished.bind(this));
       },
 
       displayNewCard(types) {
@@ -219,9 +219,11 @@ define([
           dojo.destroy(tile);
         });
         const card = dojo.query('#everything_else_area #card')[0];
+        console.log(card);
         if (card === undefined) {
           dojo.place(this.format_block('jstpl_card', {}), 'everything_else_area');
         }
+        console.log(types);
         types.forEach((type, i) => {
           dojo.place(this.format_block('jstpl_tile', { type: type, position: i }), 'card');
         });

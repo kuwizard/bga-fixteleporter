@@ -9,7 +9,7 @@ define(['dojo', 'dojo/_base/declare'], (dojo, declare) => {
       if (id === null) {
         // This is a flip button and we don't care about id
         id = this.rand();
-        while (Object.keys(this._connected).includes(id)) {
+        while (Object.keys(this._connected).map(Number).includes(id)) {
           id = this.rand();
         }
       }
