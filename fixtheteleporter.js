@@ -274,17 +274,22 @@ define([
 
       notif_changeTiles(n) {
         const positions = n.args.positions;
+        const destinationPlayerId = parseInt(n.args.player_id);
         const tiles = positions.map((position) => {
-          return dojo.query(`#player_board_${n.args.player_id} .tile[data-position='${position}']`)[0];
+          return dojo.query(`#player_board_${destinationPlayerId} .tile[data-position='${position}']`)[0];
         });
-        this.disconnect(positions);
+        if (this.player_id === destinationPlayerId) {
+          this.disconnect(positions);
+        }
         tiles.forEach((tile) => {
           const oldPosition = parseInt(tile.dataset.position);
           const newPosition = positions.find((position) => position !== oldPosition);
           dojo.attr(tile, 'data-position', newPosition);
-          this.connect(tile, this.onClickSelect.bind(this), newPosition, newPosition);
+          if (this.player_id === destinationPlayerId) {
+            this.connect(tile, this.onClickSelect.bind(this), newPosition, newPosition);
+          }
         });
-        this.removeAllClasses(['selected']);
+        this.removeAllClasses(['selected'], destinationPlayerId);
       },
 
       notif_playerClaimedFinish(n) {
@@ -323,9 +328,10 @@ define([
         }
       },
 
-      removeAllClasses(classes) {
+      removeAllClasses(classes, playerId = '') {
         classes.forEach((clazz) => {
-          const elements = dojo.query(`.${clazz}`);
+          const playerBoardClass = playerId === '' ? '' : `#player_board_${playerId} `;
+          const elements = dojo.query(`${playerBoardClass}.${clazz}`);
           elements.forEach((element) => {
             dojo.removeClass(element, clazz);
           });
