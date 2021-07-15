@@ -258,7 +258,10 @@ define([
       notif_flipTile(n) {
         const tile = dojo.query(`#player_board_${n.args.player_id} .tile[data-type='${n.args.from}']`)[0];
         const position = tile.dataset.position;
-        this.disconnect(position);
+        const currentPlayer = parseInt(n.args.player_id) === this.player_id;
+        if (currentPlayer) {
+          this.disconnect(position);
+        }
         dojo.destroy(tile);
         const newTile = dojo.place(
           this.format_block('jstpl_tile', {
@@ -267,7 +270,7 @@ define([
           }),
           `player_board_${n.args.player_id}`,
         );
-        if (parseInt(n.args.player_id) === this.player_id) {
+        if (currentPlayer) {
           this.connect(newTile, this.onClickSelect.bind(this), newTile.dataset.position, newTile.dataset.position);
         }
       },
