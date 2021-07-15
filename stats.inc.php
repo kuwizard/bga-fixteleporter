@@ -3,7 +3,7 @@
 /**
  *------
  * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
- * fixtheteleporter implementation : © <Your name here> <Your email address here>
+ * Please Fix the Teleporter implementation : © Pavel Kulagin kuzwiz@mail.ru
  *
  * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
  * See http://en.boardgamearena.com/#!doc/Studio for more information.
