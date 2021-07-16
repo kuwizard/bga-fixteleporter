@@ -21,7 +21,8 @@ div#everything_else_area {
   position: relative;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr; }
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr; }
   div#everything_else_area[data-players="2"] .player_area[data-no="1"] {
     grid-column-start: 2;
     grid-row-start: 2; }

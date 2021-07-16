@@ -8,6 +8,7 @@ div#everything_else_area {
   display: grid;
   grid-gap: $insideGap;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 
   @each $nPlayers, $layo in $layout {
     &[data-players="#{$nPlayers}"] .player_area {
