@@ -219,8 +219,6 @@ define([
         types.forEach((type, i) => {
           dojo.place(this.format_block('jstpl_tile', { type: type, position: i }), 'card');
         });
-        // After dojo.fadeOut there's a style "opacity: 0" so we need to show the card
-        dojo.removeAttr('card', 'style');
       },
 
       ///////////////////////////////////////////////////
@@ -308,7 +306,7 @@ define([
         const duration = 700;
         const userFailed = userMistakes.includes(false);
         if (userFailed) {
-          dojo.fadeOut({ node: 'card', duration: duration }).play();
+          this.fadeOutAndDestroy('card', duration, 0);
         } else {
           await this.slide('card', `player_board_${playerId}`, {
             duration: duration,
@@ -318,8 +316,6 @@ define([
           this.scoreCtrl[playerId].toValue(this.scoreCtrl[playerId].current_value + 1);
         }
         await this.sleep(duration);
-        dojo.removeAttr('card', 'data-claimed-color');
-        await this.sleep(0.2 * duration);
         this.displayNewCard(n.args.newCard);
         this.removeAllClasses(['checked-correct', 'checked-incorrect']);
         if (!userFailed || playerId !== this.player_id) {
