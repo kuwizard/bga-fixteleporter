@@ -215,13 +215,7 @@ define([
       },
 
       displayNewCard(types) {
-        dojo.query('#card .tile').forEach((tile) => {
-          dojo.destroy(tile);
-        });
-        const card = dojo.query('#everything_else_area #card')[0];
-        if (card === undefined) {
-          dojo.place(this.format_block('jstpl_card', {}), 'everything_else_area');
-        }
+        dojo.place(this.format_block('jstpl_card', {}), 'card_container');
         types.forEach((type, i) => {
           dojo.place(this.format_block('jstpl_tile', { type: type, position: i }), 'card');
         });

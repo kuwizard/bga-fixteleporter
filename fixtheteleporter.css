@@ -228,11 +228,13 @@ div#flip {
     grid-column-start: 1;
     grid-row-start: 2; }
 
-div#card {
+#card_container {
   grid-column-start: 2;
   grid-row-start: 1;
   justify-self: center;
-  align-self: end;
+  align-self: end; }
+
+#card {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   display: grid;
@@ -242,23 +244,23 @@ div#card {
   border-width: 4px;
   border-color: transparent;
   overflow: hidden; }
-  div#card[data-claimed-color="#0f93a0"] {
+  #card[data-claimed-color="#0f93a0"] {
     border-color: #0f93a0; }
-  div#card[data-claimed-color="#738e35"] {
+  #card[data-claimed-color="#738e35"] {
     border-color: #738e35; }
-  div#card[data-claimed-color="#e36842"] {
+  #card[data-claimed-color="#e36842"] {
     border-color: #e36842; }
-  div#card[data-claimed-color="#dfe089"] {
+  #card[data-claimed-color="#dfe089"] {
     border-color: #dfe089; }
-  div#card #tile[data-position="0"] {
+  #card #tile[data-position="0"] {
     grid-column-start: 1;
     grid-row-start: 1; }
-  div#card #tile[data-position="1"] {
+  #card #tile[data-position="1"] {
     grid-column-start: 2;
     grid-row-start: 1; }
-  div#card #tile[data-position="2"] {
+  #card #tile[data-position="2"] {
     grid-column-start: 2;
     grid-row-start: 2; }
-  div#card #tile[data-position="3"] {
+  #card #tile[data-position="3"] {
     grid-column-start: 1;
     grid-row-start: 2; }

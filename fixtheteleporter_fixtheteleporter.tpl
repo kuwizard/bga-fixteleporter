@@ -12,7 +12,7 @@
 <div id="board">
     <div id="current_player_area"></div>
     <div id="everything_else_area">
-        <div id="card"></div>
+        <div id="card_container"></div>
     </div>
 </div>
 
